@@ -6,4 +6,5 @@ int main(){
     printf("-->> New game \n");
     printf("-->> Load game \n") ;
     printf("-->> Exit \n\n");
+    
 }
