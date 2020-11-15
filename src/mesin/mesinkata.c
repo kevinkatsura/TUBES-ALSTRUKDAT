@@ -78,7 +78,7 @@ boolean IsKataSama(Kata K1, Kata K2)
     int i = 0;
     if (K1.Length = K2.Length)
     {
-        while (valid && hitung<K1.Length)
+        while (valid && i<K1.Length)
         {
             if (K1.TabKata[i] != K2.TabKata[i])
             {
@@ -92,7 +92,7 @@ boolean IsKataSama(Kata K1, Kata K2)
     }
     else
     {
-        valid = false
+        valid = false;
     }
     return valid;
     
