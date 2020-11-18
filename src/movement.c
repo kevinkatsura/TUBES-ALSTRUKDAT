@@ -49,7 +49,7 @@ void W (List *L){
         }
 }
 
-void A (List L){
+void A (List *L){
     if (Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)-1)!='*' && Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)-1)!='A' && Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)-1)!='W')
         {
             Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) == '-';
@@ -96,7 +96,7 @@ void A (List L){
         }
 }
 
-void S (List L){
+void S (List *L){
         if (Info(matriks(Current(*L)),Ordinat(*L)+1,Absis(*L))!='*' && Info(matriks(Current(*L)),Ordinat(*L)+1,Absis(*L))!='A' && Info(matriks(Current(*L)),Ordinat(*L)+1,Absis(*L))!='W')
         {
             Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) == '-';
@@ -143,7 +143,7 @@ void S (List L){
         }
 }
 
-void D (List L){
+void D (List *L){
     if (Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)+1)!='*' && Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)+1)!='A' && Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)+1)!='W')
         {
             Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) == '-';
