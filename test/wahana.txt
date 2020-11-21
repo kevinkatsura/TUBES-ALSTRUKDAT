@@ -1,0 +1,15 @@
+UwuCoaster 
+200 
+20
+20
+Deskripi uWuCoaster,
+Halolintar
+150
+20
+15
+Deskripsi Halolintar,
+Wangky Universe
+175
+15
+20
+Deskripsi Wangky Universe.

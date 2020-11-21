@@ -83,13 +83,47 @@ void Enqueue (Queue * Q, infotype X)
     else{
         if (Tail(*Q) == MaxEl(*Q)-1)
         {
+        	address P=Tail(*Q);
+        	address temp;
             Tail(*Q) = 0 ;
             InfoTail(*Q) = X ;
+            temp=Tail(*Q);
+            boolean belum=true;
+            while (temp!= Head(*Q) && belum){
+            	if(Priority((*Q),temp)>Priority((*Q),P)){
+            		infotype tukar=Info((*Q),P);
+            		Info((*Q),P)=Info((*Q),temp);
+            		Info((*Q),temp)=tukar;
+            		temp=P;
+            		P-=1;
+				} else {
+					belum=false;
+				}
+			}
         }
         else
         {
+        	address P=Tail(*Q);
             Tail(*Q)++ ;
-            InfoTail(*Q) = X ;
+            InfoTail(*Q) = X ; 
+        	address temp;
+            temp=Tail(*Q);
+            boolean belum=true;
+            while (temp!= Head(*Q) && belum){
+            	if(Priority((*Q),temp)>Priority((*Q),P)){
+            		infotype tukar=Info((*Q),P);
+            		Info((*Q),P)=Info((*Q),temp);
+            		Info((*Q),temp)=tukar;
+            		temp=P;
+            		if(P==0){
+            			P=MaxEl(*Q)-1;
+					} else{
+						P-=1;	
+					}	
+				} else {
+					belum=false;
+				}
+			}
         } 
     }
 }
@@ -117,3 +151,34 @@ void Dequeue (Queue * Q, infotype * X)
         }
     }
 }
+
+void PushS(infotype * X, string Y){
+	boolean belum=true;
+	int i=0;
+	(*X).wahana[(*X).idxksg]=Y;
+	if((*X).idxksg!=MAX-1){
+		(*X).idxksg+=1;
+	}	
+}
+
+void PopS (infotype * X, int i){
+	int j=i;
+	if (j==(*X).idxksg){
+		(*X).idxksg-=1;
+	} else {
+		while(j!=(*X).idxksg){
+			(*X).wahana[j]=(*X).wahana[j+1];
+			j+=1;
+		}
+		(*X).idxksg-=1;
+	}
+	 
+}
+
+void Basic(infotype * X){
+	(*X).idxksg=0;
+	(*X).priority=1;
+	(*X).patience=1;
+	
+}
+
