@@ -7,21 +7,21 @@ Kata CKata ;
 void IgnoreBlank()
 /* Mengabaikan satu atau beberapa BLANK
 I.S. : CC sembarang 
-F.S. : CC ≠ BLANK atau CC = MARK */
+F.S. : CC ? BLANK atau CC = MARK */
 {    
-    while (CC == BLANK)
+    while ((CC == BLANK) || (CC == NEWLINE))
     {
-        ADV() ;
+        ADV();
     }
 }
 
-void STARTKATA()
+void STARTKATA(char *file)
 /* I.S. : CC sembarang 
 F.S. : EndKata = true, dan CC = MARK; 
         atau EndKata = false, CKata adalah kata yang sudah diakuisisi,
         CC karakter pertama sesudah karakter terakhir kata */
     {
-        START() ;
+        START(file) ;
         CKata.Length = 0 ;
         IgnoreBlank() ;
         ADVKATA();
@@ -35,7 +35,7 @@ F.S. : CKata adalah kata terakhir yang sudah diakuisisi,
 Proses : Akuisisi kata menggunakan procedure SalinKata */
 {
         SalinKata() ;
-        if (CC == BLANK)
+        if ((CC == BLANK) || (CC == NEWLINE))
         {
             IgnoreBlank() ;
             if (CC == MARK)
@@ -62,12 +62,12 @@ F.S. : CKata berisi kata yang sudah diakuisisi;
         Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
     {
         int i = (CKata.Length) ;
-        while (CC != MARK && CC != BLANK && CKata.Length != NMax)
+        while (CC != MARK && CC != BLANK && CC != NEWLINE && CKata.Length != NMax)
         {
             CKata.TabKata[i] = CC ;
             i++ ;
             CKata.Length += 1 ;
-            ADV() ;
+            ADV();
         }
     }
 
@@ -96,4 +96,60 @@ boolean IsKataSama(Kata K1, Kata K2)
     }
     return valid;
     
+}
+
+char KataToChar (Kata K)
+/* Mengonversi Kata K menjadi char, K.Length=1 */
+{
+	return (K.TabKata[0]);
+}
+
+int KataToInt (Kata K)
+/* Mengonversi Kata K menjadi integer */
+{
+	int val = 0;
+	int i = 0;
+	while (i<K.Length)
+	{
+		val = val * 10;
+		switch (K.TabKata[i]){
+			case '0' : val += 0; break;
+			case '1' : val += 1; break;
+			case '2' : val += 2; break;
+			case '3' : val += 3; break;
+			case '4' : val += 4; break;
+			case '5' : val += 5; break;
+			case '6' : val += 6; break;
+			case '7' : val += 7; break;
+			case '8' : val += 8; break;
+			case '9' : val += 9; break;
+		};
+		i++;
+	}
+	return val;	
+}
+void InputUser (Kata *K)
+/* Memasukkan inputan user ke dalam Kata K*/
+{
+	char c;
+	int i = 0;
+	scanf("%c",&c);
+	while (c != '\n')
+	{
+		(*K).TabKata[i] = c;
+		++i;
+		scanf("%c",&c);
+	}
+	(*K).Length = i;
+}
+
+void PrintKata (Kata K)
+/* Menampilkan Kata K ke layar */
+{
+	int i = 0;
+	while (i<K.Length)
+	{
+		printf("%c", K.TabKata[i]);
+		i++;
+	}
 }
