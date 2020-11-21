@@ -4,11 +4,12 @@
 #ifndef __MESINKATA_H__
 #define __MESINKATA_H__
 
-#include "boolean.h"
-#include "mesinkar.h"
+
+#include "mesinkar.c"
 
 #define NMax 50
 #define BLANK ' '
+#define NEWLINE '\n'
 
 typedef struct {
 	char TabKata[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
@@ -22,9 +23,9 @@ extern Kata CKata;
 void IgnoreBlank();
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : CC sembarang 
-   F.S. : CC ≠ BLANK atau CC = MARK */
+   F.S. : CC ? BLANK atau CC = MARK */
 
-void STARTKATA();
+void STARTKATA(char *file);
 /* I.S. : CC sembarang 
    F.S. : EndKata = true, dan CC = MARK; 
           atau EndKata = false, CKata adalah kata yang sudah diakuisisi,
@@ -48,4 +49,17 @@ void SalinKata();
 boolean IsKataSama (Kata K1, Kata K2);
 /* Mengirimkan true jika K1 = K2 */
 
+char KataToChar (Kata K);
+/* Mengonversi Kata K menjadi char, K.Length=1 */
+
+int KataToInt (Kata K);
+/* Mengonversi Kata K menjadi integer */
+
+void InputUser (Kata *K);
+/* Memasukkan inputan user ke dalam Kata K*/
+
+void PrintKata (Kata K);
+/* Menampilkan Kata K ke layar */
+
 #endif
+
