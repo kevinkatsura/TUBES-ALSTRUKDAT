@@ -12,6 +12,7 @@ int main(){
 	string s;
 	scanf("%s", &s);
 	Stack Perintah;		//stack yang akan menampung semua printah yang ada
+	Queue Antrian;
 	switch(s){
 		case "new":
 			printf("Memulai permainan baru...");
@@ -30,17 +31,19 @@ int main(){
 				if (!main){
 					switch(perintah){
 						case "build":
-							
+							//menambahkan perintah build ke dalam stack perintah
 						case "upgrade":
-							
+							//menambahkan perintah upgrade ke dalam stack perintah
 						case "buy":
-							
+							//menambahkan perintah buy ke dalam stack perintah
 						case "undo":
-						
+							//pop sekali di stack perintah
 						case "execute":
-						
+							//mengeksekusi semua perintah yang ada di stack perintah
 						case "main":
-						
+							CreateEmpty(&Perintah);
+							main=true;
+							break;
 						default:
 							printf("input unknown or can't be done in preparation phase");
 							break:	
@@ -48,17 +51,39 @@ int main(){
 				} else {
 					switch(perintah){
 						case "serve":
-							
+							//menjalankan fungsi serve
+							//menjalankan randomize untuk kerusakan wahana
 						case "repair":
-							
+							//memperbaiki wahana yang rusak
 						case "detail":
-							
+							//menampilkan detail wahana di sebelah pemain	
 						case "office":
-							
+							//player memasuki office
+							boolean office=true;
+							while(office){
+								string command;
+								printf("Masukkan perintah (Details / Report / Exit):");
+								scanf("%s", &command);
+								switch(command){
+									case "Details":
+										
+									case "Report":
+										
+									case "Exit":
+										office=false;
+										break;
+									default:
+										printf("input unknown or can't be done in office");
+										break:
+								}
+							}
+							break;
 						case "prepare":
-							
+							prepare(&Antrian);
+							main=false;
+							break;
 						default:
-							printf("input unknown or can't be done in preparation phase");
+							printf("input unknown or can't be done in main phase");
 							break:
 					}
 				}
