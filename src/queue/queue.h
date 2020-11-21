@@ -5,13 +5,22 @@
 #ifndef queue_H
 #define queue_H
 
-#include "boolean.h"
+#include "../boolean.h"
 
 #define Nil -1
+#define MAX 10
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
-typedef int infotype;
+typedef char * string;
+typedef int PATIENCE;
+typedef int PRIORITY;
+typedef struct {
+	PATIENCE patience;
+	PRIORITY priority;
+	string wahana[MAX];
+	int idxksg;
+}infotype;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
@@ -24,8 +33,12 @@ typedef struct { infotype * T;   /* tabel penyimpan elemen */
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika Q adalah Queue, maka akses elemen : */
+#define Info(Q,P) (Q).T[P]
+#define Priority(Q,P) (Q).T[P].priority
 #define Head(Q) (Q).HEAD
 #define Tail(Q) (Q).TAIL
+#define PriorityHead(Q) (Q).T[(Q).HEAD].priority
+#define PriorityTail(Q) (Q).T[(Q).TAIL].priority
 #define InfoHead(Q) (Q).T[(Q).HEAD]
 #define InfoTail(Q) (Q).T[(Q).TAIL]
 #define MaxEl(Q) (Q).MaxEl
@@ -63,5 +76,15 @@ void Dequeue (Queue * Q, infotype * X);
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
+        
+void PushS (infotype * X, string Y );
+/*memasukkan string Y (nama wahana) ke dalam X.wahana (list wahana)*/
+
+void PopS (infotype * X, int i);
+/*mengeluarkan string dari list wahana index ke i dari list*/
+
+void Basic(infotype * X);
+/*membuat X ke dalam kondisi awal:priority: 1, patience : 1, idxksg (idxkosong):0 */
+
 
 #endif
