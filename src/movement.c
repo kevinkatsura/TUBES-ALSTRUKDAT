@@ -1,6 +1,7 @@
 #include "matriks/matriks.h"
 #include "point/point.h"
-#include "list"
+#include "listdp/listdp.h"
+#include "perintah.h"
 
 void W (List *L){
         if (Info(matriks(Current(*L)),Ordinat(*L)-1,Absis(*L))!='*' && Info(matriks(Current(*L)),Ordinat(*L)-1,Absis(*L))!='A' && Info(matriks(Current(*L)),Ordinat(*L)-1,Absis(*L))!='W')

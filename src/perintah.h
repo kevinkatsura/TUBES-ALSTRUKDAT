@@ -39,4 +39,6 @@ void office();
 
 void prepare();
 
+void ObjectSurroundList();
+
 #endif
