@@ -9,7 +9,7 @@ void IgnoreBlank()
 I.S. : CC sembarang 
 F.S. : CC ? BLANK atau CC = MARK */
 {    
-    while ((CC == BLANK) || (CC == NEWLINE))
+    while ((CC == BLANK) || (CC == NEWLINE)) 
     {
         ADV();
     }
@@ -22,9 +22,9 @@ F.S. : EndKata = true, dan CC = MARK;
         CC karakter pertama sesudah karakter terakhir kata */
     {
         START(file) ;
-        CKata.Length = 0 ;
-        IgnoreBlank() ;
-        ADVKATA();
+        //CKata.Length = 0 ;
+        //IgnoreBlank() ;
+        //ADVKATA();
     }
 
 void ADVKATA()
@@ -34,23 +34,13 @@ F.S. : CKata adalah kata terakhir yang sudah diakuisisi,
         Jika CC = MARK, EndKata = true.		  
 Proses : Akuisisi kata menggunakan procedure SalinKata */
 {
-        SalinKata() ;
-        if ((CC == BLANK) || (CC == NEWLINE))
-        {
-            IgnoreBlank() ;
-            if (CC == MARK)
-            {
-                EndKata = true ;
-            }
-            else
-            {
-                EndKata = false ;
-            }
-        }
-        else if (CC == MARK)
-        {
-            EndKata = true ;
-        }        
+    SalinKata();
+	IgnoreBlank();
+	if (CC==MARK){
+		EndKata = true;
+	} else {
+		EndKata = false;
+	}
 }
 
 void SalinKata()
@@ -60,16 +50,16 @@ F.S. : CKata berisi kata yang sudah diakuisisi;
         CC = BLANK atau CC = MARK; 
         CC adalah karakter sesudah karakter terakhir yang diakuisisi.
         Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
-    {
-        int i = (CKata.Length) ;
-        while (CC != MARK && CC != BLANK && CC != NEWLINE && CKata.Length != NMax)
-        {
-            CKata.TabKata[i] = CC ;
-            i++ ;
-            CKata.Length += 1 ;
-            ADV();
-        }
-    }
+{
+	CKata.Length = 0;
+	while ((CC!=MARK) && (CC!=NEWLINE) && (CC!=KOMA)){
+		if (CKata.Length < NMax){
+			CKata.TabKata[CKata.Length] = CC;
+			CKata.Length++;	
+		}
+		ADV(); 
+	}
+}
 
 boolean IsKataSama(Kata K1, Kata K2)
 /* Mengirimkan true jika K1 = K2 */
@@ -152,4 +142,20 @@ void PrintKata (Kata K)
 		printf("%c", K.TabKata[i]);
 		i++;
 	}
+	printf("\n");
+}
+
+Kata KonkatKata (Kata K1, Kata K2)
+/*Mengembalikan gabungan Kata K1 dan K2 dengan dipisah spasi terlebih dahulu*/
+{
+	int i = K1.Length;
+	K1.TabKata[i]= ' ';
+	i++;
+	int j;
+	for (j=0;j<K2.Length;j++){
+		K1.TabKata[i]=K2.TabKata[j];
+		i++;
+	}
+	K1.Length += K2.Length+1;
+	return(K1);
 }

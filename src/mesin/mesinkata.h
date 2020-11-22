@@ -7,7 +7,7 @@
 
 #include "mesinkar.c"
 
-#define NMax 50
+#define NMax 1000
 #define BLANK ' '
 #define NEWLINE '\n'
 
