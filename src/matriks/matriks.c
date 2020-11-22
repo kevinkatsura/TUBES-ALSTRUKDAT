@@ -18,7 +18,7 @@ void MakeMATRIKS (MATRIKS *M, char *file){
 		i++;
 		NKol(*M)=j;
 	}
-	NBrs(*M)=i;
+	NBrs(*M)=i;*/
 	
 } 
 /* Memasukkan tiap karakter dalam file ke dalam matriks M */
@@ -29,11 +29,7 @@ void TulisMATRIKS (MATRIKS M){
 	indeks i,j;
 	for (i=0;i<NBrs(M);i++){
 		for (j=0;j<NKol(M);j++){
-			if (j==NKol(M)-1){
-				printf("%c", Info(M,i,j));
-			} else {
-				printf("%c ", Info(M,i,j));
-			}
+			printf("%c", Info(M,i,j));
 		}
 		if (i!=NBrs(M)) {
 			printf("\n");
