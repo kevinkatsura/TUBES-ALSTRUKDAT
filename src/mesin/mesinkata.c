@@ -52,7 +52,7 @@ F.S. : CKata berisi kata yang sudah diakuisisi;
         Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 {
 	CKata.Length = 0;
-	while ((CC!=MARK) && (CC!=NEWLINE) && (CC!=KOMA)){
+	while ((CC!=MARK) && (CC!=LIMITER) && (CC!=NEWLINE)){
 		if (CKata.Length < NMax){
 			CKata.TabKata[CKata.Length] = CC;
 			CKata.Length++;	

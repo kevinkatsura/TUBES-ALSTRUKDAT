@@ -11,15 +11,11 @@
 
 typedef int indeks; /* indeks baris, kolom */
 typedef Kata ElType;
-/*typedef struct {
-	Kata isi; /*isi dari matriks di indeks yang dimaksud
-} ElType; */
-
 typedef struct { 
 	ElType Mem[NBmax][NKmax];
-	int NBrs; /*jumlah baris efektif*/
-	int NKol; /*jumlah kolom efektif*/
-} MATRIKS;
+	int NBrs2; /*jumlah baris efektif*/
+	int NKol2; /*jumlah kolom efektif*/
+} MATRIKS2;
 
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */       
 /* *** Konstruktor membentuk MATRIKS *** */
@@ -30,8 +26,8 @@ void MakeMATRIKS2 (MATRIKS2 *M, char *file);
 
 /* *** Selektor *** */
 #define Elmt(M,i,j) (M).Mem[(i)][(j)]
-#define NBrs2(M) (M).NBrs
-#define NKol2(M) (M).NKol
+#define NBrs2(M) (M).NBrs2
+#define NKol2(M) (M).NKol2
 
 /* ********** KELOMPOK BACA/TULIS ********** */ 
 void TulisMATRIKS2 (MATRIKS2 M);
