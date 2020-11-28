@@ -178,6 +178,7 @@ void PopS (infotypeQ * X, int i){
 void PrintP (infotypeQ X){
 	// sudah dicek sebelum dipanggil apakah memiliki isi
 	int i=0;
+	printf("(");
 	PrintKata(X.wahana[i]);
 	i++;
 	while (i!=X.idxksg){
@@ -185,6 +186,7 @@ void PrintP (infotypeQ X){
 		PrintKata(X.wahana[i]);
 		i++;
 	}
+	printf(")");
 }
 
 void Basic(infotypeQ * X){

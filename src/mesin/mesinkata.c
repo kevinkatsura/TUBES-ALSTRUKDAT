@@ -142,7 +142,6 @@ void PrintKata (Kata K)
 		printf("%c", K.TabKata[i]);
 		i++;
 	}
-	printf("\n");
 }
 
 Kata KonkatKata (Kata K1, Kata K2)
