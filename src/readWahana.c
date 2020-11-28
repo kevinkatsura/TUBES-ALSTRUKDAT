@@ -6,11 +6,11 @@ Kata hargaW[max];
 Kata kapasitasW[max];
 Kata durasiW[max];
 Kata deskripsiW[max];
-Kata kayu[max];
-Kata batu[max];
-Kata pasir[max];
-Kata besi[max];
-Kata semen[max];
+Kata kayuW[max];
+Kata batuW[max];
+Kata pasirW[max];
+Kata besiW[max];
+Kata semenW[max];
 
 
 void ekstrakWahana(int *nData){
@@ -42,19 +42,19 @@ void ekstrakWahana(int *nData){
 			deskripsiW[i]=CKata;
 			ADV();
 			SalinKata();
-			kayu[i]=CKata;
+			kayuW[i]=CKata;
 			ADV();
 			SalinKata();
-			batu[i]=CKata;
+			batuW[i]=CKata;
 			ADV();
 			SalinKata();
-			pasir[i]=CKata;
+			pasirW[i]=CKata;
 			ADV();
 			SalinKata();
-			besi[i]=CKata;
+			besiW[i]=CKata;
 			ADV();
 			SalinKata();
-			semen[i]=CKata;
+			semenW[i]=CKata;
 		}
 		if (CC!=MARK)
 			ADV();

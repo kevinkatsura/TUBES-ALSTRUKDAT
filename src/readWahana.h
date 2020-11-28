@@ -9,11 +9,11 @@ extern	Kata hargaW[max];
 extern	Kata kapasitasW[max];
 extern	Kata durasiW[max];
 extern	Kata deskripsiW[max];
-extern	Kata kayu[max];
-extern	Kata batu[max];
-extern	Kata pasir[max];
-extern	Kata besi[max];
-extern	Kata semen[max];
+extern	Kata kayuW[max];
+extern	Kata batuW[max];
+extern	Kata pasirW[max];
+extern	Kata besiW[max];
+extern	Kata semenW[max];
 
 void ekstrakWahana();
 
