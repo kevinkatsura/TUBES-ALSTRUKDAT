@@ -4,7 +4,7 @@
 #define MATRIKS_H
 
 #include "../boolean.h"
-#include "../point/point.h"
+#include "../point/point.c"
 #include "../mesin/mesinkar.c"
 
 #define NBmax 100
@@ -16,11 +16,13 @@ typedef struct {
 	char info; /*info dari lokasi*/
 } ElType; 
 
-typedef struct { 
+typedef struct{ 
 	ElType Mem[NBmax][NKmax];
 	int NBrs; /*jumlah baris efektif*/
 	int NKol; /*jumlah kolom efektif*/
 } MATRIKS;
+
+
 
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */       
 /* *** Konstruktor membentuk MATRIKS *** */

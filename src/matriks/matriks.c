@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "matriks.h"
-#include "../point/point.h"
 
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */              
 /* *** Konstruktor membentuk MATRIKS *** */
@@ -29,11 +28,7 @@ void TulisMATRIKS (MATRIKS M){
 	indeks i,j;
 	for (i=0;i<NBrs(M);i++){
 		for (j=0;j<NKol(M);j++){
-			if (j==NKol(M)-1){
-				printf("%c", Info(M,i,j));
-			} else {
-				printf("%c ", Info(M,i,j));
-			}
+			printf("%c", Info(M,i,j));
 		}
 		if (i!=NBrs(M)) {
 			printf("\n");

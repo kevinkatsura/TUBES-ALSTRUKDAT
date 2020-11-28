@@ -21,15 +21,15 @@ boolean IsOrigin (point P)
 void BacaPOINT (point * P)
 /* Membentuk P dari x dan y yang dibaca dari keyboard */ 
 { /* KAMUS */
-    float x, y;
-    /* ALGORITMA */ scanf("%f", &x); scanf("%f", &y);
+    int x, y;
+    /* ALGORITMA */ scanf("%d", &x); scanf("%d", &y);
     *P = MakePoint(x,y);
 }
 
 void TulisPOINT (point P)
 /* Nilai P ditulis ke layar dg format "(X,Y)" */ 
 { /* ALGORITMA */
-    printf("(%.2f,%.2f)", Absis(P), Ordinat(P)); 
+    printf("(%d,%d)", Absis(P), Ordinat(P)); 
 }
 
 /**** Fungsi/Operasi lain terhadap point ****/

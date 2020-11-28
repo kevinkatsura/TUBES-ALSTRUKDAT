@@ -7,6 +7,10 @@
 #include "../boolean.h"
 
 #define MARK '.'
+#define NEWLINE '\n'
+#define BLANK ' '
+#define LIMITER ';'
+
 /* State Mesin */
 extern char CC;
 extern boolean EOP;

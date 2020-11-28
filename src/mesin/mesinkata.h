@@ -7,9 +7,10 @@
 
 #include "mesinkar.c"
 
-#define NMax 50
+#define NMax 1000
+/*
 #define BLANK ' '
-#define NEWLINE '\n'
+#define LIMITER ';'*/
 
 typedef struct {
 	char TabKata[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */

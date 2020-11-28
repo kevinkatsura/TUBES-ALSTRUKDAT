@@ -8,6 +8,12 @@ typedef struct {
 int x; /* absis */ int y; /* ordinat */
 } point;
 
+
+/**** Selektor point ****/
+#define Absis(P) (P).x 
+#define Ordinat(P) (P).y
+
+
 /**** Konstruktor POINT ****/
 point MakePoint (float x, float y);
 /* Membentuk sebuah point dari x dan y dengan x sebagai absis dan y sebagai ordinat */

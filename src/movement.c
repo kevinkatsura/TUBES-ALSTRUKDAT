@@ -1,13 +1,11 @@
-#include "matriks/matriks.h"
+#include "listdp/listdp.c"
 #include "point/point.h"
-#include "listdp/listdp.h"
-#include "perintah.h"
 
 void W (List *L){
-        if (Info(matriks(Current(*L)),Ordinat(*L)-1,Absis(*L))!='*' && Info(matriks(Current(*L)),Ordinat(*L)-1,Absis(*L))!='A' && Info(matriks(Current(*L)),Ordinat(*L)-1,Absis(*L))!='W')
+        if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L))-1,Absis(Kordinat(*L)))!='*' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))-1,Absis(Kordinat(*L)))!='A' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))-1,Absis(Kordinat(*L)))!='W')
         {
-            Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) == '-';
-            if (Info(matriks(Current(*L)),Ordinat(*L)-1,Absis(*L))=='^')
+            Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) ='-';
+            if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L))-1,Absis(Kordinat(*L)))=='^')
             {
                 if (Nomor(*L)==3)
                 {
@@ -22,10 +20,10 @@ void W (List *L){
                 boolean found = false;
                 int i,j;
                 i = 0;
-                while (!found and i<=9)
+                while (!found && i<NBrs(matriks(Current(*L))))
                 {
                     j = 0;
-                    while (!found and j <=19)
+                    while (!found && j <NKol(matriks(Current(*L))))
                     {
                         if (Info(matriks(Current(*L)),i,j)=='v')
                         {
@@ -38,23 +36,23 @@ void W (List *L){
                     }
                     i+=1;
                 }
-                Ordinat(*L) = i-1;
-                Absis(*L) = j;
-                Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) = 'P';                
+                Ordinat(Kordinat(*L)) = i-1;
+                Absis(Kordinat(*L)) = j;
+                Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';                
             }
             else
             {
-                Ordinat(*L) = Ordinat(*L)-1;
-                Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) = 'P';  
+                Ordinat(Kordinat(*L)) = Ordinat(Kordinat(*L))-1;
+                Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';  
             }
         }
 }
 
 void A (List *L){
-    if (Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)-1)!='*' && Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)-1)!='A' && Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)-1)!='W')
+    if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)!='*' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)!='A' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)!='W')
         {
-            Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) == '-';
-            if (Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)-1)=='<')
+            Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = '-';
+            if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)=='<')
             {
                 if (Nomor(*L)==4)
                 {
@@ -69,10 +67,10 @@ void A (List *L){
                 boolean found = false;
                 int i,j;
                 i = 0;
-                while (!found and i<=9)
+                while (!found && i<NBrs(matriks(Current(*L))))
                 {
                     j = 0;
-                    while (!found and j <=19)
+                    while (!found && j <NKol(matriks(Current(*L))))
                     {
                         if (Info(matriks(Current(*L)),i,j)=='>')
                         {
@@ -85,23 +83,23 @@ void A (List *L){
                     }
                     i+=1;
                 }
-                Ordinat(*L) = i;
-                Absis(*L) = j-1;
-                Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) = 'P';                
+                Ordinat(Kordinat(*L)) = i;
+                Absis(Kordinat(*L)) = j-1;
+                Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';                
             }
             else
             {
-                Absis(*L) = Absis(*L)-1;
-                Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) = 'P';  
+                Absis(Kordinat(*L)) = Absis(Kordinat(*L))-1;
+                Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';  
             }
         }
 }
 
 void S (List *L){
-        if (Info(matriks(Current(*L)),Ordinat(*L)+1,Absis(*L))!='*' && Info(matriks(Current(*L)),Ordinat(*L)+1,Absis(*L))!='A' && Info(matriks(Current(*L)),Ordinat(*L)+1,Absis(*L))!='W')
+        if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))!='*' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))!='A' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))!='W')
         {
-            Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) == '-';
-            if (Info(matriks(Current(*L)),Ordinat(*L)+1,Absis(*L))=='v')
+            Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = '-';
+            if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))=='v')
             {
                 if (Nomor(*L)==1)
                 {
@@ -116,10 +114,10 @@ void S (List *L){
                 boolean found = false;
                 int i,j;
                 i = 0;
-                while (!found and i<=9)
+                while (!found && i<NBrs(matriks(Current(*L))))
                 {
                     j = 0;
-                    while (!found and j <=19)
+                    while (!found && j <NKol(matriks(Current(*L))))
                     {
                         if (Info(matriks(Current(*L)),i,j)=='^')
                         {
@@ -132,23 +130,23 @@ void S (List *L){
                     }
                     i+=1;
                 }
-                Ordinat(*L) = i+1;
-                Absis(*L) = j;
-                Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) = 'P';                
+                Ordinat(Kordinat(*L)) = i+1;
+                Absis(Kordinat(*L)) = j;
+                Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';                
             }
             else
             {
-                Ordinat(*L) = Ordinat(*L)+1;
-                Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) = 'P';  
+                Ordinat(Kordinat(*L)) = Ordinat(Kordinat(*L))+1;
+                Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';  
             }
         }
 }
 
 void D (List *L){
-    if (Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)+1)!='*' && Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)+1)!='A' && Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)+1)!='W')
+    if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))+1)!='*' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))+1)!='A' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))+1)!='W')
         {
-            Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) == '-';
-            if (Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)-1)=='>')
+            Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = '-';
+            if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)=='>')
             {
                 if (Nomor(*L)==2)
                 {
@@ -163,10 +161,10 @@ void D (List *L){
                 boolean found = false;
                 int i,j;
                 i = 0;
-                while (!found and i<=9)
+                while (!found && i<NBrs(matriks(Current(*L))))
                 {
                     j = 0;
-                    while (!found and j <=19)
+                    while (!found && j <NKol(matriks(Current(*L))))
                     {
                         if (Info(matriks(Current(*L)),i,j)=='<')
                         {
@@ -179,14 +177,14 @@ void D (List *L){
                     }
                     i+=1;
                 }
-                Ordinat(*L) = i;
-                Absis(*L) = j+1;
-                Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) = 'P';               
+                Ordinat(Kordinat(*L)) = i;
+                Absis(Kordinat(*L)) = j+1;
+                Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';               
             }
             else
             {
-                Absis(*L) = Absis(*L)+1;
-                Info(matriks(Current(*L)),Ordinat(*L),Absis(*L)) = 'P';  
+                Absis(Kordinat(*L)) = Absis(Kordinat(*L))+1;
+                Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';  
             }
         }
 }
