@@ -1,4 +1,7 @@
 #include "perintah.h"
+#include "string.h"
+extern ObjectSurroundList
+
 void ObjectSurroundList(Bangunan B, List L,char*A[]){
     int i = 0;
     if (Info(Current(L),Ordinat(L)+1,Absis(L))=='W' || Info(Current(L),Ordinat(L)+1,Absis(L))=='A' ||Info(Current(L),Ordinat(L)+1,Absis(L))=='O')
