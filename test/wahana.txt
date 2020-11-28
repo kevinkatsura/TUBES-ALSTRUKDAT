@@ -1,3 +1,4 @@
-UwuCoaster bahagia;200;20;20;Deskripi uWuCoaster
+namaW;hargaW;kapasitasW;durasiW;deskripsiW
+UwuCoaster;200;20;20;Deskripsi uWuCoaster
 Halolintar;150;20;15;Deskripsi Halolintar
 Wangky Universe;175;15;20;Deskripsi Wangky Universe.
