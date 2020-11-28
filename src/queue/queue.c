@@ -152,7 +152,7 @@ void Dequeue (Queue * Q, infotypeQ * X)
     }
 }
 
-void PushS(infotypeQ * X, string Y){
+void PushS(infotypeQ * X, Kata Y){
 	boolean belum=true;
 	int i=0;
 	(*X).wahana[(*X).idxksg]=Y;
@@ -163,16 +163,28 @@ void PushS(infotypeQ * X, string Y){
 
 void PopS (infotypeQ * X, int i){
 	int j=i;
-	if (j==(*X).idxksg){
+	if (j==(*X).idxksg-1){
 		(*X).idxksg-=1;
 	} else {
-		while(j!=(*X).idxksg){
+		while(j!=(*X).idxksg-1){
 			(*X).wahana[j]=(*X).wahana[j+1];
 			j+=1;
 		}
 		(*X).idxksg-=1;
 	}
 	 
+}
+
+void PrintP (infotypeQ X){
+	// sudah dicek sebelum dipanggil apakah memiliki isi
+	int i=0;
+	PrintKata(X.wahana[i]);
+	i++;
+	while (i!=X.idxksg){
+		printf(", ");
+		PrintKata(X.wahana[i]);
+		i++;
+	}
 }
 
 void Basic(infotypeQ * X){

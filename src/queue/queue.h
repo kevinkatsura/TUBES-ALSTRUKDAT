@@ -5,20 +5,21 @@
 #ifndef queue_H
 #define queue_H
 
-#include "boolean.h"
+#include "../boolean.h"
+#include "../mesin/mesinkata.h"
 
 #define Nil -1
 #define MAX 10
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
-typedef char * string;
+
 typedef int PATIENCE;
 typedef int PRIORITY;
 typedef struct {
 	PATIENCE patience;
 	PRIORITY priority;
-	string wahana[MAX];
+	Kata wahana[MAX];
 	int idxksg;
 }infotypeQ;
 typedef int address;   /* indeks tabel */
@@ -77,11 +78,12 @@ void Dequeue (Queue * Q, infotypeQ * X);
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
         
-void PushS (infotypeQ * X, string Y );
+void PushS (infotypeQ * X, Kata Y );
 /*memasukkan string Y (nama wahana) ke dalam X.wahana (list wahana)*/
 
 void PopS (infotypeQ * X, int i);
 /*mengeluarkan string dari list wahana index ke i dari list*/
+void PrintP (infotypeQ X);
 
 void Basic(infotypeQ * X);
 /*membuat X ke dalam kondisi awal:priority: 1, patience : 1, idxksg (idxkosong):0 */
