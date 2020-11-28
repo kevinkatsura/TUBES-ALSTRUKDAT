@@ -5,7 +5,8 @@
 #define __MESINKATA_H__
 
 
-#include "mesinkar.c"
+#include "mesinkar.h"
+#include "../arraydin/arraydin.h"
 
 #define NMax 1000
 
@@ -58,6 +59,17 @@ void InputUser (Kata *K);
 
 void PrintKata (Kata K);
 /* Menampilkan Kata K ke layar */
+
+void MakeListHargaBahan (TabInt *T, char*File);
+
+void PrintListBahan (char *File);
+
+boolean IsBahanAda (Kata K, char *File);
+
+void PrintListWahana (char *File);
+
+boolean IsWahanaAda (Kata K, char *File);
+
 
 #endif
 

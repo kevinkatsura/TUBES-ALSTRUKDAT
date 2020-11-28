@@ -159,3 +159,111 @@ Kata KonkatKata (Kata K1, Kata K2)
 	K1.Length += K2.Length+1;
 	return(K1);
 }
+
+void MakeListHargaBahan (TabInt *T, char*File)
+{
+	MakeEmpty(T,5);
+	int i = 0;
+    int k = 0;
+    int harga;
+    START(File);
+    while (CC!=MARK)
+    {
+        SalinKata();
+        i+=1;
+        if ((i>2)&&(i % 2==0))
+        {
+            harga = KataToInt(CKata);
+            Elmt(*T,k) = harga;
+            k++;
+        }
+        ADV();
+    }
+    Neff(*T) = 5;
+}
+
+void PrintListBahan (char *File)
+{
+	TabInt T;
+    int i = 0;
+    int j = 0;
+    MakeListHargaBahan(&T,File);
+    START(File);
+    while(CC!=MARK)
+    {
+        SalinKata();
+        i+=1;
+        if ((i>2)&&(i%2!=0))
+        {
+            printf("-  ");
+            PrintKata(CKata);
+            printf("  Rp"); 
+            printf("%d",Elmt(T,j));
+            printf("/satuan\n");
+            j+=1;
+        }
+        ADV();
+    }
+}
+
+boolean IsBahanAda (Kata K, char *File)
+{
+	int i = 0;
+    boolean valid = false;
+    START(File);
+    while(CC!=MARK&&!valid)
+    {
+        SalinKata();
+        i+=1;
+        if ((i>2)&&(i%2!=0))
+        {
+            if (IsKataSama(K,CKata))
+            {
+                valid = true;
+            }
+        }
+        ADV();
+    }
+    return valid;
+}
+
+void PrintListWahana (char *File)
+{
+    int i = 0;
+    START(File);
+    while(CC!=MARK)
+    {
+        SalinKata();
+        i+=1;
+        if ((i>10)&&((i-1)%10==0))
+        {
+            printf("-  ");
+            PrintKata(CKata);
+            printf("\n");
+        }
+        ADV();
+    }
+}
+
+boolean IsWahanaAda (Kata K, char *File)
+{
+    int i = 0;
+    boolean valid = false;
+    START(File);
+    while(CC!=MARK&&!valid)
+    {
+        SalinKata();
+        i+=1;
+        if ((i>10)&&(i-1)%11==0)
+        {
+            if (IsKataSama(K,CKata))
+            {
+                valid = true;
+            }
+        }
+        ADV();
+    }
+    return valid;
+}
+
+
