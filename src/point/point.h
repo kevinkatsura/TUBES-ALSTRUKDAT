@@ -5,7 +5,7 @@
 
 /**** Definisi Abstract Data Type POINT ****/
 typedef struct {
-int x; /* absis */ int y; /* ordinat */
+float x; /* absis */ float y; /* ordinat */
 } point;
 
 

@@ -54,15 +54,10 @@ int JamToDetik(Jam J)
 Jam DetikToJam(int N)
 /* Konversi detik ke Jam */ 
 { /* Kamus Lokal */
-    int sisa;
-    Jam JOut;
-
-    /* Algoritma */
-    N = N % 86400; 
-
-    // harus ditambah ini agar valid Hour(JOut) = N / 3600;
-    sisa = N % 3600;
-    Minute(JOut) = sisa / 60;
-    Second(JOut) = sisa % 60;
-    return JOut;
+    Jam J;
+    if (N>86400){
+        N=N%86400;
+    }
+    J = MakeJam((N/3600), ((N%3600)/60), ((N%3600)%60)) ;
+    return J;
 }

@@ -41,7 +41,7 @@ void MakeEmpty (Queue * Q, int Max)
 /* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
 {
-    (*Q).T = (infotype*) malloc (Max*sizeof(infotype)) ;
+    (*Q).T = (infotypeQ*) malloc (Max*sizeof(infotypeQ)) ;
     if ((*Q).T == NULL)
     {
         MaxEl(*Q) = 0 ;
@@ -69,7 +69,7 @@ void DeAlokasi(Queue * Q)
 }
 
 /* *** Primitif Add/Delete *** */
-void Enqueue (Queue * Q, infotype X)
+void Enqueue (Queue * Q, infotypeQ X)
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
@@ -91,7 +91,7 @@ void Enqueue (Queue * Q, infotype X)
             boolean belum=true;
             while (temp!= Head(*Q) && belum){
             	if(Priority((*Q),temp)>Priority((*Q),P)){
-            		infotype tukar=Info((*Q),P);
+            		infotypeQ tukar=Info((*Q),P);
             		Info((*Q),P)=Info((*Q),temp);
             		Info((*Q),temp)=tukar;
             		temp=P;
@@ -111,7 +111,7 @@ void Enqueue (Queue * Q, infotype X)
             boolean belum=true;
             while (temp!= Head(*Q) && belum){
             	if(Priority((*Q),temp)>Priority((*Q),P)){
-            		infotype tukar=Info((*Q),P);
+            		infotypeQ tukar=Info((*Q),P);
             		Info((*Q),P)=Info((*Q),temp);
             		Info((*Q),temp)=tukar;
             		temp=P;
@@ -127,7 +127,7 @@ void Enqueue (Queue * Q, infotype X)
         } 
     }
 }
-void Dequeue (Queue * Q, infotype * X)
+void Dequeue (Queue * Q, infotypeQ * X)
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
@@ -152,7 +152,7 @@ void Dequeue (Queue * Q, infotype * X)
     }
 }
 
-void PushS(infotype * X, string Y){
+void PushS(infotypeQ * X, string Y){
 	boolean belum=true;
 	int i=0;
 	(*X).wahana[(*X).idxksg]=Y;
@@ -161,7 +161,7 @@ void PushS(infotype * X, string Y){
 	}	
 }
 
-void PopS (infotype * X, int i){
+void PopS (infotypeQ * X, int i){
 	int j=i;
 	if (j==(*X).idxksg){
 		(*X).idxksg-=1;
@@ -175,7 +175,7 @@ void PopS (infotype * X, int i){
 	 
 }
 
-void Basic(infotype * X){
+void Basic(infotypeQ * X){
 	(*X).idxksg=0;
 	(*X).priority=1;
 	(*X).patience=1;

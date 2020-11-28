@@ -17,7 +17,7 @@ void MakeMATRIKS (MATRIKS *M, char *file){
 		i++;
 		NKol(*M)=j;
 	}
-	NBrs(*M)=i;
+	NBrs(*M)=i;*/
 	
 } 
 /* Memasukkan tiap karakter dalam file ke dalam matriks M */
