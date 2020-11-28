@@ -186,7 +186,7 @@ void PrintP (infotypeQ X){
 		PrintKata(X.wahana[i]);
 		i++;
 	}
-	printf(")");
+	printf("), kesabaran: %d", X.patience);
 }
 
 void Basic(infotypeQ * X){
