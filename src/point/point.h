@@ -5,8 +5,13 @@
 
 /**** Definisi Abstract Data Type POINT ****/
 typedef struct {
-int x; /* absis */ int y; /* ordinat */
+float x; /* absis */ float y; /* ordinat */
 } point;
+
+
+/**** Selektor point ****/
+#define Absis(P) (P).x 
+#define Ordinat(P) (P).y
 
 
 /**** Konstruktor POINT ****/
