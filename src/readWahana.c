@@ -1,26 +1,27 @@
 #include <stdio.h>
-#include "mesin/mesinkata.c"
+#include "readWahana.h"
 
-int main(){
-	int nData=1;
+Kata namaW[max];
+Kata hargaW[max];
+Kata kapasitasW[max];
+Kata durasiW[max];
+Kata deskripsiW[max];
+Kata kayu[max];
+Kata batu[max];
+Kata pasir[max];
+Kata besi[max];
+Kata semen[max];
+
+
+void ekstrakWahana(int *nData){
+	int n=0;
 	START("../test/wahana.txt");
 	while (!EOP){
-		if (CC==NEWLINE)
-			nData++;
-		ADV();
-	} 
-	
-	Kata namaW[nData];
-	Kata hargaW[nData];
-	Kata kapasitasW[nData];
-	Kata durasiW[nData];
-	Kata deskripsiW[nData];
-	Kata kayu[nData];
-	Kata batu[nData];
-	Kata pasir[nData];
-	Kata besi[nData];
-	Kata semen[nData];
-	
+	if (CC==NEWLINE)
+		n++;
+	ADV();
+	*nData=n+1;
+	}
 	int i=0;
 	START("../test/wahana.txt");
 	while(CC!=MARK){
@@ -59,10 +60,4 @@ int main(){
 			ADV();
 			i++;
 	}
-	/*Contoh penggunaan*/
-	int j;
-	for (j=0;j<nData;j++){
-		PrintKata(besi[j]);
-	} 
-}
-
+} 	
