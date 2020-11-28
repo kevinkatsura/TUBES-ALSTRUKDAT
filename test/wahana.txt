@@ -1,4 +1,4 @@
-namaW;hargaW;kapasitasW;durasiW;deskripsiW
-UwuCoaster;200;20;20;Deskripsi uWuCoaster
-Halolintar;150;20;15;Deskripsi Halolintar
-Wangky Universe;175;15;20;Deskripsi Wangky Universe.
+namaW;hargaW;kapasitasW;durasiW;deskripsiW;kayu;batu;pasir;besi;semen,
+UwuCoaster;200;20;20;Deskripsi uWuCoaster;6;2;1;0;9,
+Halolintar;150;20;15;Deskripsi Halolintar;4;5;2;8;0,
+Wangky Universe;175;15;20;Deskripsi Wangky Universe;0;4;2;1;3.

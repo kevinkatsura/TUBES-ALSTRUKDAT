@@ -15,7 +15,11 @@ int main(){
 	Kata kapasitasW[nData];
 	Kata durasiW[nData];
 	Kata deskripsiW[nData];
-	
+	Kata kayu[nData];
+	Kata batu[nData];
+	Kata pasir[nData];
+	Kata besi[nData];
+	Kata semen[nData];
 	
 	int i=0;
 	START("../test/wahana.txt");
@@ -35,6 +39,21 @@ int main(){
 			ADV();
 			SalinKata();
 			deskripsiW[i]=CKata;
+			ADV();
+			SalinKata();
+			kayu[i]=CKata;
+			ADV();
+			SalinKata();
+			batu[i]=CKata;
+			ADV();
+			SalinKata();
+			pasir[i]=CKata;
+			ADV();
+			SalinKata();
+			besi[i]=CKata;
+			ADV();
+			SalinKata();
+			semen[i]=CKata;
 		}
 		if (CC!=MARK)
 			ADV();
@@ -43,7 +62,7 @@ int main(){
 	/*Contoh penggunaan*/
 	int j;
 	for (j=0;j<nData;j++){
-		PrintKata(namaW[j]);
+		PrintKata(besi[j]);
 	} 
 }
 
