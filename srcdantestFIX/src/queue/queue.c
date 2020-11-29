@@ -3,21 +3,21 @@
 #include "stdio.h"
 
 /* ********* Prototype ********* */
-boolean IsEmpty (Queue Q)
+boolean IsEmptyQ (Queue Q)
 /* Mengirim true jika Q kosong: lihat definisi di atas */
 {
     return (Head(Q) == Nil && Tail(Q) == Nil) ;
 }
-boolean IsFull (Queue Q)
+boolean IsFullQ (Queue Q)
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
 {
-    return(NBElmt(Q)==MaxEl(Q)) ;
+    return(NBElmtQ(Q)==MaxElQ(Q)) ;
 }
-int NBElmt (Queue Q)
+int NBElmtQ (Queue Q)
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 {
-    if (IsEmpty(Q))
+    if (IsEmptyQ(Q))
     {
         return 0 ;
     }
@@ -28,13 +28,13 @@ int NBElmt (Queue Q)
         }
         else
         {
-            return (MaxEl(Q) - Head(Q) +Tail(Q)+1) ;
+            return (MaxElQ(Q) - Head(Q) +Tail(Q)+1) ;
         }
     }
 }
 
 /* *** Kreator *** */
-void MakeEmpty (Queue * Q, int Max)
+void MakeEmptyQ (Queue * Q, int Max)
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max */
@@ -44,20 +44,20 @@ void MakeEmpty (Queue * Q, int Max)
     (*Q).T = (infotypeQ*) malloc (Max*sizeof(infotypeQ)) ;
     if ((*Q).T == NULL)
     {
-        MaxEl(*Q) = 0 ;
+        MaxElQ(*Q) = 0 ;
         Tail(*Q) = Nil ;
         Head(*Q) = Nil ;
     }
     else
     {
-        MaxEl(*Q) = Max ;
+        MaxElQ(*Q) = Max ;
         Tail(*Q) = Nil ;
         Head(*Q) = Nil ;
     }
 }
 
 /* *** Destruktor *** */
-void DeAlokasi(Queue * Q)
+void DeAlokasiQ(Queue * Q)
 /* Proses: Mengembalikan memori Q */
 /* I.S. Q pernah dialokasi */
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
@@ -65,23 +65,23 @@ void DeAlokasi(Queue * Q)
     free((*Q).T) ;
     Head(*Q) = Nil ;
     Tail(*Q) = Nil ;
-    MaxEl(*Q) = 0 ;
+    MaxElQ(*Q) = 0 ;
 }
 
 /* *** Primitif Add/Delete *** */
-void Enqueue (Queue * Q, infotypeQ X)
+void EnqueueQ (Queue * Q, infotypeQ X)
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
 {
-    if (IsEmpty(*Q))
+    if (IsEmptyQ(*Q))
     {
         Head(*Q) = 0 ;
         Tail(*Q) = 0 ;
         InfoTail(*Q) = X ;
     }
     else{
-        if (Tail(*Q) == MaxEl(*Q)-1)
+        if (Tail(*Q) == MaxElQ(*Q)-1)
         {
         	address P=Tail(*Q);
         	address temp;
@@ -91,9 +91,9 @@ void Enqueue (Queue * Q, infotypeQ X)
             boolean belum=true;
             while (temp!= Head(*Q) && belum){
             	if(Priority((*Q),temp)>Priority((*Q),P)){
-            		infotypeQ tukar=Info((*Q),P);
-            		Info((*Q),P)=Info((*Q),temp);
-            		Info((*Q),temp)=tukar;
+            		infotypeQ tukar=InfoQ((*Q),P);
+            		InfoQ((*Q),P)=InfoQ((*Q),temp);
+            		InfoQ((*Q),temp)=tukar;
             		temp=P;
             		P-=1;
 				} else {
@@ -111,12 +111,12 @@ void Enqueue (Queue * Q, infotypeQ X)
             boolean belum=true;
             while (temp!= Head(*Q) && belum){
             	if(Priority((*Q),temp)>Priority((*Q),P)){
-            		infotypeQ tukar=Info((*Q),P);
-            		Info((*Q),P)=Info((*Q),temp);
-            		Info((*Q),temp)=tukar;
+            		infotypeQ tukar=InfoQ((*Q),P);
+            		InfoQ((*Q),P)=InfoQ((*Q),temp);
+            		InfoQ((*Q),temp)=tukar;
             		temp=P;
             		if(P==0){
-            			P=MaxEl(*Q)-1;
+            			P=MaxElQ(*Q)-1;
 					} else{
 						P-=1;	
 					}	
@@ -127,7 +127,7 @@ void Enqueue (Queue * Q, infotypeQ X)
         } 
     }
 }
-void Dequeue (Queue * Q, infotypeQ * X)
+void DequeueQ (Queue * Q, infotypeQ * X)
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
@@ -141,7 +141,7 @@ void Dequeue (Queue * Q, infotypeQ * X)
     }
     else
     {
-        if (Head(*Q) == MaxEl(*Q)-1)
+        if (Head(*Q) == MaxElQ(*Q)-1)
         {
             Head(*Q) = 0 ;
         }
@@ -152,7 +152,7 @@ void Dequeue (Queue * Q, infotypeQ * X)
     }
 }
 
-void PushS(infotypeQ * X, string Y){
+void PushQ(infotypeQ * X, Kata Y){
 	boolean belum=true;
 	int i=0;
 	(*X).wahana[(*X).idxksg]=Y;
@@ -163,16 +163,30 @@ void PushS(infotypeQ * X, string Y){
 
 void PopS (infotypeQ * X, int i){
 	int j=i;
-	if (j==(*X).idxksg){
+	if (j==(*X).idxksg-1){
 		(*X).idxksg-=1;
 	} else {
-		while(j!=(*X).idxksg){
+		while(j!=(*X).idxksg-1){
 			(*X).wahana[j]=(*X).wahana[j+1];
 			j+=1;
 		}
 		(*X).idxksg-=1;
 	}
 	 
+}
+
+void PrintQ (infotypeQ X){
+	// sudah dicek sebelum dipanggil apakah memiliki isi
+	int i=0;
+	printf("(");
+	PrintKata(X.wahana[i]);
+	i++;
+	while (i!=X.idxksg){
+		printf(", ");
+		PrintKata(X.wahana[i]);
+		i++;
+	}
+	printf("), kesabaran: %d", X.patience);
 }
 
 void Basic(infotypeQ * X){

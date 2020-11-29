@@ -211,7 +211,7 @@ boolean IsEQ(TabInt T1, TabInt T2)
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : Tabel boleh kosong!! *** */
-IdxType Search1(TabInt T, ElType X)
+IdxType Search1(TabInt T, ElTypeA X)
 {
       /* Search apakah ada elemen tabel T yang bernilai X */
       /* Jika ada, menghasilkan indeks i terkecil, dengan elemen ke-i = X */
@@ -248,7 +248,7 @@ IdxType Search1(TabInt T, ElType X)
             }
       }
 }
-boolean SearchB(TabInt T, ElType X)
+boolean SearchB(TabInt T, ElTypeA X)
 {
       /* Search apakah ada elemen tabel T yang bernilai X */
       /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
@@ -257,7 +257,7 @@ boolean SearchB(TabInt T, ElType X)
 }
 
 /* ********** NILAI EKSTREM ********** */
-void MaxMin(TabInt T, ElType *Max, ElType *Min)
+void MaxMin(TabInt T, ElTypeA *Max, ElTypeA *Min)
 {
       /* I.S. Tabel T tidak kosong */
       /* F.S. Max berisi nilai maksimum T;
@@ -295,7 +295,7 @@ void CopyTab(TabInt Tin, TabInt *Tout)
             Elmt(*Tout, i) = Elmt(Tin, i);
       }
 }
-ElType SumTab(TabInt T)
+ElTypeA SumTab(TabInt T)
 {
       /* Menghasilkan hasil penjumlahan semua elemen T */
       /* Jika T kosong menghasilkan 0 */
@@ -315,7 +315,7 @@ ElType SumTab(TabInt T)
             return sum;
       }
 }
-int CountX(TabInt T, ElType X)
+int CountX(TabInt T, ElTypeA X)
 {
       /* Menghasilkan berapa banyak kemunculan X di T */
       /* Jika T kosong menghasilkan 0 */
@@ -373,7 +373,7 @@ void Sort(TabInt *T, boolean asc)
       /* Proses : Mengurutkan T dengan salah satu algoritma sorting,
    algoritma bebas */
       IdxType i, iMax, iMin, Pass;
-      ElType Temp;
+      ElTypeA Temp;
       if (!asc)
       {
             for (Pass = GetFirstIdx(*T); Pass <= GetLastIdx(*T); Pass++)
@@ -412,7 +412,7 @@ void Sort(TabInt *T, boolean asc)
 
 /* ********** MENAMBAH DAN MENGHAPUS ELEMEN DI AKHIR ********** */
 /* *** Menambahkan elemen terakhir *** */
-void AddAsLastEl(TabInt *T, ElType X)
+void AddAsLastEl(TabInt *T, ElTypeA X)
 {
       /* Proses: Menambahkan X sebagai elemen terakhir tabel */
       /* I.S. Tabel T boleh kosong, tetapi tidak penuh */
@@ -421,7 +421,7 @@ void AddAsLastEl(TabInt *T, ElType X)
       Neff(*T) += 1;
 }
 /* ********** MENGHAPUS ELEMEN ********** */
-void DelLastEl(TabInt *T, ElType *X)
+void DelLastEl(TabInt *T, ElTypeA *X)
 {
       /* Proses : Menghapus elemen terakhir tabel */
       /* I.S. Tabel tidak kosong */

@@ -6,6 +6,7 @@
 #include "../point/point.h"
 #include "../mesin/mesinkata.h"
 #include "../matriks/matriks.h"
+#include "../queue/queue.h"
 
 
 typedef struct
@@ -21,7 +22,7 @@ typedef struct
     int totalUang; //PREP
     TabInt inventory; //PREP
     point lokasi; //PREP/MAIN
-    //infotypeQ antrian; //MAIN
+    //Queue antrian; //MAIN
 
 } State;
 

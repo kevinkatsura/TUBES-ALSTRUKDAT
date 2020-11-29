@@ -2,9 +2,9 @@
 #include "point/point.h"
 
 void W (List *L){
-        if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L))-1,Absis(Kordinat(*L)))!='*' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))-1,Absis(Kordinat(*L)))!='A' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))-1,Absis(Kordinat(*L)))!='W')
+        if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L))-1,Absis(Kordinat(*L)))!='*' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))-1,Absis(Kordinat(*L)))!='A' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))-1,Absis(Kordinat(*L)))!='W'  && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))-1,Absis(Kordinat(*L)))!='O')
         {
-            Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) ='-';
+            Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = '-';
             if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L))-1,Absis(Kordinat(*L)))=='^')
             {
                 if (Nomor(*L)==3)
@@ -25,7 +25,7 @@ void W (List *L){
                     j = 0;
                     while (!found && j <NKol(matriks(Current(*L))))
                     {
-                        if (Info(matriks(Current(*L)),i,j)=='v')
+                        if (Info(matriks(Current(*L)),i,j)=='V')
                         {
                             found = true;
                         }
@@ -36,7 +36,7 @@ void W (List *L){
                     }
                     i+=1;
                 }
-                Ordinat(Kordinat(*L)) = i-1;
+                Ordinat(Kordinat(*L)) = i-2;
                 Absis(Kordinat(*L)) = j;
                 Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';                
             }
@@ -49,7 +49,7 @@ void W (List *L){
 }
 
 void A (List *L){
-    if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)!='*' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)!='A' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)!='W')
+    if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)!='*' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)!='A' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)!='W' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)!='O')
         {
             Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = '-';
             if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)=='<')
@@ -83,7 +83,7 @@ void A (List *L){
                     }
                     i+=1;
                 }
-                Ordinat(Kordinat(*L)) = i;
+                Ordinat(Kordinat(*L)) = i-1;
                 Absis(Kordinat(*L)) = j-1;
                 Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';                
             }
@@ -96,10 +96,10 @@ void A (List *L){
 }
 
 void S (List *L){
-        if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))!='*' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))!='A' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))!='W')
+        if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))!='*' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))!='A' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))!='W' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))!='O')
         {
             Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = '-';
-            if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))=='v')
+            if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L))+1,Absis(Kordinat(*L)))=='V')
             {
                 if (Nomor(*L)==1)
                 {
@@ -130,7 +130,7 @@ void S (List *L){
                     }
                     i+=1;
                 }
-                Ordinat(Kordinat(*L)) = i+1;
+                Ordinat(Kordinat(*L)) = i;
                 Absis(Kordinat(*L)) = j;
                 Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';                
             }
@@ -143,10 +143,10 @@ void S (List *L){
 }
 
 void D (List *L){
-    if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))+1)!='*' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))+1)!='A' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))+1)!='W')
+    if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))+1)!='*' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))+1)!='A' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))+1)!='W' && Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))+1)!='O')
         {
             Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = '-';
-            if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))-1)=='>')
+            if (Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))+1)=='>')
             {
                 if (Nomor(*L)==2)
                 {
@@ -177,7 +177,7 @@ void D (List *L){
                     }
                     i+=1;
                 }
-                Ordinat(Kordinat(*L)) = i;
+                Ordinat(Kordinat(*L)) = i-1;
                 Absis(Kordinat(*L)) = j+1;
                 Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';               
             }
@@ -187,4 +187,14 @@ void D (List *L){
                 Info(matriks(Current(*L)),Ordinat(Kordinat(*L)),Absis(Kordinat(*L))) = 'P';  
             }
         }
+}
+
+boolean IsWahanaSekitar(List L)
+{
+    boolean valid = false;
+    if ((Info(matriks(Current(L)),Ordinat(Kordinat(L))+1,Absis(Kordinat(L))) = 'W') || (Info(matriks(Current(L)),Ordinat(Kordinat(L)),Absis(Kordinat(L))+1) = 'W') || (Info(matriks(Current(L)),Ordinat(Kordinat(L))-1,Absis(Kordinat(L))) = 'W') || (Info(matriks(Current(L)),Ordinat(Kordinat(L)),Absis(Kordinat(L))-1) = 'W'))
+    {
+        valid = true;
+    }
+    return valid;
 }

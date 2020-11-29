@@ -1,10 +1,12 @@
-#include "map.c"
-#include "mesin/mesinkata.c"
+#include "mesin/mesinkata.h"
+#include "point/point.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #ifndef bangunan_H
 #define bangunan_H
 
-
+#define NilW NULL
 
 /*          ADT BANGUNAN        */
 // Sebagai wadah penyimpanan posisi wahana berdasarkan nama masing masing wahana

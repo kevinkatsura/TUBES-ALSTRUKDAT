@@ -7,7 +7,7 @@
 
 #include "../boolean.h"
 #include "../mesin/mesinkata.h"
-#include "../state/state.h"
+#include "../point/point.h"
 
 #define Nil -1
 #define MaxElP 10
@@ -15,12 +15,12 @@
 typedef struct {
 	Kata command;		//merujuk pada perintah seperti but, build, atau upgrade
 	Kata input;		//merujuk pada nama, seperti nama bangunan, nama barang yang ingin dibeli atau nama bangunan yang ingin dijadikan upgrade dari lokasi
-  State keadaan; 
+  point lokasi; 
 } infotypeP;
 
 #define Command(P) (P).command
 #define input(P) (P).input
-#define State(P) (P).keadaan
+#define lok(P) (P).lokasi
 
 typedef int address;   /* indeks tabel */
 

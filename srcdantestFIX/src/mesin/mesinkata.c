@@ -144,6 +144,7 @@ void PrintKata (Kata K)
 	}
 }
 
+
 Kata KonkatKata (Kata K1, Kata K2)
 /*Mengembalikan gabungan Kata K1 dan K2 dengan dipisah spasi terlebih dahulu*/
 {
@@ -157,6 +158,54 @@ Kata KonkatKata (Kata K1, Kata K2)
 	}
 	K1.Length += K2.Length+1;
 	return(K1);
+}
+
+void ListAction (Action *A, char *File)
+{
+      int i = 0;
+      int kA = 0;
+      int kDA = 0;
+      START(File);
+      while (CC!=MARK)
+      {
+            SalinKata();
+            i+=1;
+            if ((i>2)&&(i % 2!=0))
+            {
+                  Aksi(*A,kA) = CKata;
+                  kA++;
+            }
+            else if ((i>2)&&(i % 2==0))
+            {
+                  DurasiAksi(*A,kDA) = KataToInt(CKata);
+                  kDA++;
+            }
+            ADV();
+      }
+}
+
+void ListMaterial (Materials *B, char *File)
+{
+      int i = 0;
+      int kA = 0;
+      int kDA = 0;
+      START(File);
+      while (CC!=MARK)
+      {
+            SalinKata();
+            i+=1;
+            if ((i>2)&&(i % 2!=0))
+            {
+                  Material(*B,kA) = CKata;
+                  kA++;
+            }
+            else if ((i>2)&&(i % 2==0))
+            {
+                  HargaMaterial(*B,kDA) = KataToInt(CKata);
+                  kDA++;
+            }
+            ADV();
+      }
 }
 
 void ParsePilihBahan (Kata Perintah, Kata *jumlah, Kata *bahan)
@@ -179,6 +228,7 @@ void ParsePilihBahan (Kata Perintah, Kata *jumlah, Kata *bahan)
       (*bahan).TabKata[ii] = Perintah.TabKata[k+ii+1];
    }
 }
+
 
 void MakeListHargaBahan (TabInt *T, char *File)
 {
@@ -288,6 +338,63 @@ boolean IsBahanAda (Kata K, char *File)
     return valid;
 }
 
+int HargaWahana(Kata wahana, char *File1)
+{
+    int nData1=1;
+	START(File1);
+	while (!EOP){
+		if (CC==NEWLINE)
+			nData1++;
+		ADV();
+	}
+    Kata namaW[nData1];
+    Kata hargaW[nData1];
+
+    int i=0;
+	START(File1);
+	while(CC!=MARK){
+		while ((CC!=NEWLINE) && (CC!=MARK)){
+			SalinKata();
+			namaW[i]=CKata;
+			ADV();
+			SalinKata();
+            hargaW[i]=CKata;
+			ADV();
+			SalinKata();
+			ADV();
+			SalinKata();
+			ADV();
+			SalinKata();
+			ADV();
+			SalinKata();
+			ADV();
+			SalinKata();
+			ADV();
+			SalinKata();
+			ADV();
+			SalinKata();
+			ADV();
+			SalinKata();
+		}
+		if (CC!=MARK)
+			ADV();
+			i++;
+	}
+    boolean valid = false;
+    int j = 0;
+    int jumlah;
+    while (!valid && j<nData1)
+    {
+        if (IsKataSama(wahana,namaW[j]))
+        {
+            jumlah = KataToInt(hargaW[j]);
+            valid = true;
+        }
+        j++;
+    }
+    return jumlah;
+}
+
 void PrintListWahana (char *File)
 {
     int i = 0;
@@ -326,28 +433,11 @@ boolean IsWahanaAda (Kata K, char *File)
     }
     return valid;
 }
-/*int main() {
-    Kata input, jumlah, bahan;
-    InputUser(&input);
-    ParsePilihBahan(input,&jumlah,&bahan);
-    PrintKata(jumlah);
-    printf("-----------penanda");
-    PrintKata(bahan);
-    if (IsBahanAda(bahan,"../../test/material.txt"))
-    {
-        printf("true");
-    }
-    else
-    {
-        printf("false");
-    }
-    int har;
-    printf("PENANDA---");
-    har = HargaBahan(bahan,"../../test/material.txt");
-    printf("hargaBahan: %d",har);
-    
 
-    int h;
-    scanf("%d",h);
-    return 0;
+
+/*
+int main() {
+    Action A;
+    ListAction(&A,"../../test/aksi.txt");
+    printf("durasi: %d\n", DurasiAksi(A,1));
 }*/

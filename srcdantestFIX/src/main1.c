@@ -1,14 +1,69 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "movement.h"
 #include "mesin/mesinkata.h"
 #include "state/state.h"
 #include "stackP/stackP.h"
-#include "movement.h"
-
+#include "ListforDetail.h"
 
 int main(){
-    Kata InputPertama, game;
+	MATRIKS M1;
+	MATRIKS M2;
+	MATRIKS M3;
+	MATRIKS M4;
+	MakeMATRIKS(&M1,"../test/map1.txt");
+	MakeMATRIKS(&M2,"../test/map2.txt");
+	MakeMATRIKS(&M3,"../test/map3.txt");
+	MakeMATRIKS(&M4,"../test/map4.txt");
+	int i,j;
+	for (i=0;i<NBrs(M1);i++){
+		for (j=0;j<NKol(M1);j++){
+			Lokasi(M1,i,j)=MakePoint(j+NKol(M2),i);
+		}
+	}
+	
+	for (i=0;i<NBrs(M2);i++){
+		for (j=0;j<NKol(M2);j++){
+			Lokasi(M2,i,j)=MakePoint(j,i);
+		}
+	}
+	
+	for (i=0;i<NBrs(M3);i++){
+		for (j=0;j<NKol(M3);j++){
+			Lokasi(M3,i,j)=MakePoint(j,i+NBrs(M2));
+		}
+	}
+	
+	for (i=0;i<NBrs(M1);i++){
+		for (j=0;j<NKol(M1);j++){
+			Lokasi(M4,i,j)=MakePoint(j+NKol(M2),i+NBrs(M2));
+		}
+	}
+	/*
+	for (i=0;i<NBrs(M1);i++){
+		for (j=0;j<NKol(M1);j++){
+			TulisPOINT(Lokasi(M1,i,j));
+		}
+		if (i!=NBrs(M1)) {
+			printf("\n");
+		}
+	}*/
+	List L ;
+	Nomor(L) = 2 ;
+	for (i=0;i<NBrs(M2);i++){
+		for (j=0;j<NKol(M2);j++){
+			if (Info(M2,i,j)=='P'){
+				Ordinat(Kordinat(L)) = i ;
+				Absis(Kordinat(L)) = j ;
+			}
+		}
+	}
+	Current(L)=NilL;
+	InsVLast(&L,M2);
+	InsVLast(&L,M1);
+	InsVLast(&L,M4);
+	InsVLast(&L,M3);
+	Kata InputPertama, game;
     game.TabKata[0]='.';
     game.TabKata[1]='/';
     game.TabKata[2]='w';
@@ -23,16 +78,17 @@ int main(){
     game.Length=11;
     printf("Silahkan mengetik './willygame' untuk memulai permainan.\n");
     boolean gamemulai = false;
-    while (!gamemulai)
-    { 
-        InputUser(&InputPertama);
-        if(IsKataSama(InputPertama,game))
-        {
-            gamemulai = true;
+	while (!gamemulai)
+	{
+		InputUser(&InputPertama);
+		if(IsKataSama(InputPertama,game))
+		{
+			gamemulai = true;
             printf("// Welcome to Willy wangky's fum factory!!//\n// New game / load game / exit? // \n");
             StackP Perintah;
             CreateEmpty(&Perintah);
             Kata InputKedua;
+			ListB LWahana;
             //Queue Antrian;
             
             Kata newk;
@@ -49,9 +105,9 @@ int main(){
             exit.Length = 4;
 
             InputUser(&InputKedua);
-            if (IsKataSama(InputKedua,newk))
-            {
-                boolean bermain = true;
+			if (IsKataSama(InputKedua,newk))
+			{
+				boolean bermain = true;
                 boolean main = false;
 
                 Kata WMove;
@@ -69,6 +125,43 @@ int main(){
                 Kata DMove;
                 DMove.TabKata[0]='d';
                 DMove.Length = 1;
+
+				Kata Kayu;
+				Kayu.TabKata[0]='K';
+				Kayu.TabKata[1]='a';
+				Kayu.TabKata[2]='y';
+				Kayu.TabKata[3]='u';
+				Kayu.Length = 4;
+
+				Kata Batu;
+				Batu.TabKata[0]='B';
+				Batu.TabKata[1]='a';
+				Batu.TabKata[2]='t';
+				Batu.TabKata[3]='u';
+				Batu.Length = 4;
+
+				Kata Pasir;
+				Pasir.TabKata[0]='P';
+				Pasir.TabKata[1]='a';
+				Pasir.TabKata[2]='s';
+				Pasir.TabKata[3]='i';
+				Pasir.TabKata[4]='r';
+				Pasir.Length = 5;
+
+				Kata Besi;
+				Besi.TabKata[0]='B';
+				Besi.TabKata[1]='e';
+				Besi.TabKata[2]='s';
+				Besi.TabKata[3]='i';
+				Besi.Length = 4;
+
+				Kata Semen;
+				Semen.TabKata[0]='S';
+				Semen.TabKata[1]='e';
+				Semen.TabKata[2]='m';
+				Semen.TabKata[3]='e';
+				Semen.TabKata[4]='n';
+				Semen.Length = 5;
 
                 Kata BUILD;
                 BUILD.TabKata[0]='b';
@@ -188,95 +281,57 @@ int main(){
                 EXIT.TabKata[2]='i';
                 EXIT.TabKata[3]='t';
                 EXIT.Length = 4;
-                
+            
                 State Player;
                 Kata nama;
 
-                MATRIKS M1,M2,M3;
-                MakeMATRIKS(&M2,"../test/map2.txt");
-                MakeMATRIKS(&M1,"../test/map1.txt");
-                MakeMATRIKS(&M3,"../test/map3.txt");
-                int i,j;
-                
-                
-                for (i=0;i<NBrs(M1);i++){
-                    for (j=0;j<NKol(M1);j++){
-                        Lokasi(M1,i,j)=MakePoint(j+NKol(M2),i);
-                    }
-                }
-                
-                for (i=0;i<NBrs(M2);i++){
-                    for (j=0;j<NKol(M2);j++){
-                        Lokasi(M2,i,j)=MakePoint(j,i);
-                    }
-                }
-                
-                for (i=0;i<NBrs(M3);i++){
-                    for (j=0;j<NKol(M3);j++){
-                        Lokasi(M3,i,j)=MakePoint(j,i+NBrs(M2));
-                    }
-                }
-                
-                /*for (i=0;i<NBrs(M1);i++){
-                    for (j=0;j<NKol(M1);j++){
-                        Lokasi(M4,i,j)=MakePoint(j+NKol(M2),i+NBrs(M2));
-                    }
-                }*/
+                Action AA;
+                Materials B;
+                ListAction(&AA,"../test/aksi.txt");
+                ListMaterial(&B, "../test/material.txt");
 
-                List L ;
-                Nomor(L) = 2 ;
-                for (i=0;i<NBrs(M2);i++){
-                    for (j=0;j<NKol(M2);j++){
-                        if (Info(M2,i,j)=='P'){
-                            Ordinat(Kordinat(L)) = i ;
-                            Absis(Kordinat(L)) = j ;
-                        }
-                    }
-                }
-                Current(L)=NilL;
-                InsVLast(&L,M2);
-                InsVLast(&L,M1);
-                //InsVLast(&L,M4);
-                InsVLast(&L,M3);
-               
-                
-                printf("Memulai permainan baru...\n");
+				printf("Memulai permainan baru...\n");
                 printf("Masukkan nama: ");
                 InputUser(&nama);
                 printf("\n\n");
-                NewPrepState(&Player,nama,&M2);
+				TulisMATRIKS(matriks(Current(L)));
+                NewPrepState(&Player,nama);
                 PrintPrepState(Player);
-    
-                while(bermain)
+
+				while(bermain)
                 {
                     Kata perintah;
-                    printf("Masukkan perintah: \n");
                     
-                    while (!main)
+                    if (!main)
                     {
+						printf("Masukkan perintah: ");
                         InputUser(&perintah);
                         if (IsKataSama(perintah,WMove))
                         {
                             W(&L);
-                            MPlayer(Player) = matriks(Current(L));
+                            TulisMATRIKS(matriks(Current(L)));
+                            CurrTime(Player)+=60;
                             PrintPrepState(Player);
                         }
                         else if (IsKataSama(perintah,AMove))
                         {
                             A(&L);
-                            MPlayer(Player) = matriks(Current(L));
+                            TulisMATRIKS(matriks(Current(L)));
+                            CurrTime(Player)+=60;
                             PrintPrepState(Player);
                         }
                         else if (IsKataSama(perintah,SMove))
                         {
                             S(&L);
-                            MPlayer(Player) = matriks(Current(L));
+                            TulisMATRIKS(matriks(Current(L)));
+                            CurrTime(Player)+=60;
                             PrintPrepState(Player);
                         }
                         else if (IsKataSama(perintah,DMove))
                         {
                             D(&L);
-                            MPlayer(Player) = matriks(Current(L));
+                            TulisMATRIKS(matriks(Current(L)));
+                            CurrTime(Player)+=60;
                             PrintPrepState(Player);
                         }
                         else if (IsKataSama(perintah,BUILD))
@@ -300,55 +355,101 @@ int main(){
                                 }
                             }
                             
-                            if (IsResourceAda(Player,inputW,"../test/wahana.txt"))
+                            if (!IsResourceAda(Player,inputW,"../test/wahana.txt"))
                             {
-                                printf("Resource tidak cukup. Silahkan membeli resource terlebih dahulu dengan perintah buy");
+                                printf("Resource tidak cukup. Silahkan membeli resource terlebih dahulu dengan perintah buy.\n");
                             }
                             else
                             {
-                                printf("// Memasukkan perintah: "); PrintKata(perintah); PrintKata(inputW); printf(" ke stack //\n");
-                                Command(itP) = perintah;
-                                input(itP) = inputW;
-                                State(itP) = Player;
-                                PushP(&Perintah, itP);
-                            }
-                        }/*
-                        else if(IsKataSama(perintah,UPGRADE))
-                        {
-                            Kata inputU;
-                            infotypeP itP2;
-                            printf("Ingin melakukan upgrade apa?\n");
-                            printf("List:\n");
-                            //PrintListUpgrade("wahana.txt");
-                            boolean UpgradeAda = false;
-                            while (!UpgradeAda)
-                            {
-                                InputUser(&inputU);
-                                if (!IsUpgradeAda(InputU,"../test/wahana.txt"))
+                                if (TimeRem(Player)<(TWaktu(Player)+AA.durasi[0]))
                                 {
-                                    printf("Upgrade tidak terdaftar. Silahkan ketik upgrade yang ada di list upgrade");
+                                    printf("Anda tidak dapat melakukan perintah build karena waktu tidak mencukupi!");
                                 }
                                 else
                                 {
-                                    UpgradeAda = true;
+                                    printf("// Memasukkan perintah: "); PrintKata(perintah);printf(" "); PrintKata(inputW); printf(" ke stack //\n");
+                                    InsVLastB(&LWahana,inputW,Kordinat(L));
+                                    if (Info(matriks(Current(L)),Ordinat(Kordinat(L))-1,Absis(Kordinat(L)))!='A' && Info(matriks(Current(L)),Ordinat(Kordinat(L))-1,Absis(Kordinat(L)))!='O' && Info(matriks(Current(L)),Ordinat(Kordinat(L))-1,Absis(Kordinat(L)))!='W' && Info(matriks(Current(L)),Ordinat(Kordinat(L))-1,Absis(Kordinat(L)))!='*')
+                                    {
+                                        W(&L);
+                                        Info(matriks(Current(L)),Ordinat(Kordinat(L))+1,Absis(Kordinat(L))) = 'W';
+                                    }
+                                    else
+                                    {
+                                        if (Info(matriks(Current(L)),Ordinat(Kordinat(L)),Absis(Kordinat(L))-1)!='A' && Info(matriks(Current(L)),Ordinat(Kordinat(L)),Absis(Kordinat(L))-1)!='O' && Info(matriks(Current(L)),Ordinat(Kordinat(L))+1,Absis(Kordinat(L))-1)!='W' && Info(matriks(Current(L)),Ordinat(Kordinat(L))+1,Absis(Kordinat(L))-1)!='*') {
+                                            A(&L);
+                                            Info(matriks(Current(L)),Ordinat(Kordinat(L)),Absis(Kordinat(L))+1) = 'W';
+                                        }
+                                        else
+                                        {
+                                            if (Info(matriks(Current(L)),Ordinat(Kordinat(L))+1,Absis(Kordinat(L)))!='A' && Info(matriks(Current(L)),Ordinat(Kordinat(L))+1,Absis(Kordinat(L)))!='O' && Info(matriks(Current(L)),Ordinat(Kordinat(L))+1,Absis(Kordinat(L)))!='W' && Info(matriks(Current(L)),Ordinat(Kordinat(L))+1,Absis(Kordinat(L)))!='*'){
+                                                S(&L);
+                                                Info(matriks(Current(L)),Ordinat(Kordinat(L))-1,Absis(Kordinat(L))) = 'W';
+                                            }
+                                            else
+                                            {
+                                                if (Info(matriks(Current(L)),Ordinat(Kordinat(L)),Absis(Kordinat(L))+1)!='A' && Info(matriks(Current(L)),Ordinat(Kordinat(L)),Absis(Kordinat(L))+1)!='O' && Info(matriks(Current(L)),Ordinat(Kordinat(L)),Absis(Kordinat(L))+1)!='W' && Info(matriks(Current(L)),Ordinat(Kordinat(L)),Absis(Kordinat(L))+1)!='*'){
+                                                    D(&L);
+                                                    Info(matriks(Current(L)),Ordinat(Kordinat(L)),Absis(Kordinat(L))-1) = 'W';
+                                                }
+                                            }  
+                                        }
+                                    }
+                                    TulisMATRIKS(matriks(Current(L)));
+                                    TAksi(Player) +=1;
+                                    TWaktu(Player) += AA.durasi[0];
+                                    TUang(Player) += 1000;
+                                    PrintPrepState(Player);
+                                    Command(itP) = perintah;
+                                    input(itP) = inputW;
+                                    lok(itP) = Kordinat(L);
+                                    PushP(&Perintah, itP);
                                 }
+                                
                             }
-                            if (!IsResourceAda(Player,inputU,"../test/wahana.txt"))
-                            {
-                                	printf("Resource tidak cukup. Silahkan membeli resource terlebih dahulu dengan perintah buy");
+                        }
+                        /*
+                        else if(IsKataSama(perintah,UPGRADE))
+                        {
+                            if (IsWahanaSekitar(L)){
+                                Kata inputU;
+                                infotypeP itP2;
+                                printf("Ingin melakukan upgrade apa?\n");
+                                printf("List:\n");
+                                PrintListWahana("../test/wahana.txt");
+                                boolean UpgradeAda = false;
+                                while (!UpgradeAda)
+                                {
+                                    InputUser(&inputU);
+                                    if (!IsWahanaAda(inputU,"../test/wahana.txt"))
+                                    {
+                                        printf("Upgrade tidak terdaftar. Silahkan ketik upgrade yang ada di list.\n");
+                                    }
+                                    else
+                                    {
+                                        UpgradeAda = true;
+                                    }
+                                }
+                                if (!IsResourceAda(Player,inputU,"../test/wahana.txt"))
+                                {
+                                        printf("Resource tidak cukup. Silahkan membeli resource terlebih dahulu dengan perintah buy\n");
+                                }
+                                else
+                                {
+                                    Command(itP2) = perintah;
+                                    input(itP2) = inputU;
+                                    lok(itP2) = Kordinat(L);
+                                    PushP(&Perintah, itP2);
+                                }
                             }
                             else
                             {
-                                Command(itP) = perintah;
-                                input(itP) = inputU;
-                                State(itP) = Player;
-                                PushP(&Perintah, itP);
-                            }
-                            
-                        }*/
+                                printf("Tidak ada wahana di sekitar Anda!");
+                            }*/   
+                        }
                         else if (IsKataSama(perintah,BUY)){
                             Kata inputB, jlh, bahan;
-                            infotypeP itP;
+                            infotypeP itP3;
                             printf("Ingin membeli apa?\n");
                             printf("List:\n");
                             PrintListBahan("../test/material.txt");
@@ -370,16 +471,27 @@ int main(){
                             int jumlah = KataToInt(jlh);
                             if (Money(Player)<jumlah*HargaBahan(bahan,"../test/material.txt"))
                             {
-                                printf("Uang tidak mencukupi. Silahkan jadi kaya dulu.");
+                                printf("Uang tidak mencukupi. Silahkan jadi kaya dulu.\n");
                             }
                             else
                             {
-                                printf("// Memasukkan perintah membeli ");PrintKata(bahan);printf(" sebanyak ");PrintKata(jlh);printf(" pada stack //\n");
-                                Money(Player)-=jumlah*HargaBahan(bahan,"../test/material.txt");
-                                Command(itP) = perintah;
-                                input(itP) = inputB;
-                                State(itP) = Player;
-                                PushP(&Perintah,itP);
+                                if (TimeRem(Player)<(TWaktu(Player)+AA.durasi[2]))
+                                {
+                                    printf("Anda tidak dapat melakukan perintah buy karena waktu tidak mencukupi!");
+                                }
+                                else
+                                {
+                                    printf("// Memasukkan perintah membeli ");PrintKata(bahan);printf(" sebanyak ");PrintKata(jlh);printf(" pada stack //\n");
+                                    TulisMATRIKS(matriks(Current(L)));
+                                    TAksi(Player)+=1;
+                                    TWaktu(Player)+=AA.durasi[2];
+                                    TUang(Player)+=jumlah*HargaBahan(bahan,"../test/material.txt");
+                                    PrintPrepState(Player);
+                                    Command(itP3) = perintah;
+                                    input(itP3) = inputB;
+                                    lok(itP3) = Kordinat(L);
+                                    PushP(&Perintah,itP3);
+                                }
                             }
                         }else if (IsKataSama(perintah,UNDO)){
                             infotypeP itP;
@@ -387,24 +499,45 @@ int main(){
                             //pop sekali di stack perintah
                         }else if(IsKataSama(perintah,EXECUTE)){
                             //mengeksekusi semua perintah yang ada di stack perintah
-                            /*infotypeP itP;
-                            while (!IsEmptyP(Perintah))
+                            Money(Player)-=TUang(Player);
+                            infotypeP itP;
+                            StackP Target;
+                            while(!IsEmptyP(Perintah))
                             {
-                                PopP(&Perintah, itP);
-                                switch (Command(itP))
-                                {
-                                    case BUILD:
-                                        ExecuteBuild();
-                                        break;
-                                    case UPGRADE:
-                                        ExecuteUpgrade();
-                                        break;
-                                    case BUY:
-                                        ExecuteBuy();
-                                    default:
-                                        break;
+                                PopP(&Perintah, &itP);
+                                PushP(&Target, itP);
+                            } 
+                            while (!IsEmptyP(Target))
+                            {
+                                infotypeP itP2;
+                                PopP(&Target, &itP2);
+                                if (IsKataSama(Command(itP2),BUY)){
+                                    Kata jmlh,bhn;
+                                    ParsePilihBahan(input(itP2),&jmlh,&bhn);
+                                    if (IsKataSama(Kayu,bhn))
+                                    {
+                                        Elmt(Inventory(Player),0)+=KataToInt(jmlh);
+                                    }
+                                    else if (IsKataSama(Batu,bhn))
+                                    {
+                                        Elmt(Inventory(Player),1)+=KataToInt(jmlh);
+                                    }
+                                    else if (IsKataSama(Pasir,bhn))
+                                    {
+                                        Elmt(Inventory(Player),2)+=KataToInt(jmlh);
+                                    }
+                                    else if (IsKataSama(Besi,bhn))
+                                    {
+                                        Elmt(Inventory(Player),3)+=KataToInt(jmlh);
+                                    }
+                                    else if (IsKataSama(Semen,bhn))
+                                    {
+                                        Elmt(Inventory(Player),4)+=KataToInt(jmlh);
+                                    }
                                 }
-                            }*/
+                            }
+                            PrintMainState(Player);
+                            main = true;
                         }else if (IsKataSama(perintah,MAIN)){
                             CreateEmpty(&Perintah);
                             main = true;
@@ -467,7 +600,7 @@ int main(){
                     }else{
                         printf("input unknown or can't be done in main phase");
                     }*/
-                }
+                }*/
             }
             else if (IsKataSama(InputKedua, exit))
             {
@@ -480,7 +613,5 @@ int main(){
         }
         
     }
-    int h;
-    scanf("%d",&h);
-    return 0;
+	return 0;
 }

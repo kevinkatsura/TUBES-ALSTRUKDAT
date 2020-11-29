@@ -5,7 +5,7 @@
 void NewPrepState(State *PS, Kata Nama)
 {
     Name(*PS) = Nama;
-    Money(*PS) = 1000;
+    Money(*PS) = 100000;
     CurrTime(*PS) = 75600;
     OpTime(*PS) = 32400;
     TimeRem(*PS) = CurrTime(*PS)-OpTime(*PS);
@@ -17,7 +17,7 @@ void NewPrepState(State *PS, Kata Nama)
     //i=0:kayu ; i=1:Batu ; i=2:Pasir ; i=3:Besi ; i=4:Semen
     for (int i=0; i<5; i++)
     {
-        Elmt(I,i) = 0;
+        Elmt(I,i) = 10;
     }
     Neff(I) = 5;
     Inventory(*PS) = I;
@@ -31,15 +31,15 @@ void NewPrepState(State *PS, Kata Nama)
 
 void PrintPrepState(State PS)
 {
-    printf("Preparation phase day 1\n");
-    printf("----------MAP----------\n");
-    //TulisMATRIKS(MPlayer(PS));
-    printf("\n");
+    printf("Legend:\n");
+    printf("A = Antrian\n");
+    printf("P = Player\n");
+    printf("W = Wahana\n");
+    printf("O = Office\n");
+    printf("<,^,>,V = Gerbang\n\n");
     Jam JCurr,JOpen, JRemaining, JTWaktu;
     JCurr = DetikToJam(CurrTime(PS));
     JOpen = DetikToJam(OpTime(PS));
-    JRemaining = DetikToJam(TimeRem(PS));
-    JTWaktu = DetikToJam(TWaktu(PS));
     printf("Name: ");
     PrintKata(Name(PS));
     printf("\n"); 
@@ -51,12 +51,12 @@ void PrintPrepState(State PS)
     TulisJam(JOpen);
     printf("\n");
     printf("Time Remaining: ");
-    TulisJam(JRemaining);
+    printf("%d",TimeRem(PS)/3600);printf(" hour(s)");
     printf("\n");
     printf("Total aksi yang akan dilakukan: %d", TAksi(PS));
     printf("\n");
     printf("Total waktu yang dibutuhkan: ");
-    TulisJam(JTWaktu);
+    printf("%d",TWaktu(PS)/3600);printf(" hour(s)");
     printf("\n");
     printf("Total uang yang dibutuhkan: %d", TUang(PS));
     printf("\n");
@@ -65,6 +65,34 @@ void PrintPrepState(State PS)
     printf("\n");
     //printf("\n");
     //TulisPOINT(Lok(PS));*/
+}
+
+void PrintMainState(State PS)
+{
+    printf("Legend:\n");
+    printf("A = Antrian\n");
+    printf("P = Player\n");
+    printf("W = Wahana\n");
+    printf("O = Office\n");
+    printf("<,^,>,V = Gerbang\n\n");
+    Jam JCurr,JClose, JRemaining, JTWaktu;
+    JCurr = DetikToJam(CurrTime(PS));
+    JClose = DetikToJam(ClosTime(PS));
+    JRemaining = DetikToJam(TimeRem(PS));
+    printf("Name: ");
+    PrintKata(Name(PS));
+    printf("\n"); 
+    printf("Money: %d\n", Money(PS));
+    printf("Current Time: ");
+    TulisJam(JCurr);
+    printf("\n");
+    printf("Closing Time: ");
+    TulisJam(JClose);
+    printf("\n");
+    printf("Time Remaining: ");
+    TulisJam(JRemaining);printf(" hour(s)");
+    printf("\n");
+    //PrintQ(InfoHead(Antrian(PS)));
 }
 
 boolean IsResourceAda (State PS, Kata wahana, char *File)
@@ -153,6 +181,7 @@ boolean IsResourceAda (State PS, Kata wahana, char *File)
     return valid;
 
 }
+
 
 /*int main(){
     State PS;

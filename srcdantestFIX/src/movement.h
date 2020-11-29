@@ -13,4 +13,6 @@ void S (List *L);
 
 void D (List *L);
 
+boolean IsWahanaSekitar(List L);
+
 #endif

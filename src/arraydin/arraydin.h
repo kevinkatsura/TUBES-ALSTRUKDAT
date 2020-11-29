@@ -17,10 +17,10 @@
 
 /* Definisi elemen dan koleksi objek */
 typedef int IdxType; /* type indeks */
-typedef int ElType;  /* type elemen tabel */
+typedef int ElTypeA;  /* type elemen tabel */
 typedef struct
 {
-  ElType *TI; /* memori tempat penyimpan elemen (container) */
+  ElTypeA *TI; /* memori tempat penyimpan elemen (container) */
   int Neff;   /* >=0, banyaknya elemen efektif */
   int MaxEl;  /* ukuran elemen */
 } TabInt;
@@ -119,19 +119,19 @@ boolean IsEQ(TabInt T1, TabInt T2);
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : Tabel boleh kosong!! *** */
-IdxType Search1(TabInt T, ElType X);
+IdxType Search1(TabInt T, ElTypeA X);
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan indeks i terkecil, dengan elemen ke-i = X */
 /* Jika tidak ada, mengirimkan IdxUndef */
 /* Menghasilkan indeks tak terdefinisi (IdxUndef) jika tabel T kosong */
 /* Skema Searching yang digunakan bebas */
-boolean SearchB(TabInt T, ElType X);
+boolean SearchB(TabInt T, ElTypeA X);
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
 /* Skema searching yang digunakan bebas */
 
 /* ********** NILAI EKSTREM ********** */
-void MaxMin(TabInt T, ElType *Max, ElType *Min);
+void MaxMin(TabInt T, ElTypeA *Max, ElTypeA *Min);
 /* I.S. Tabel T tidak kosong */
 /* F.S. Max berisi nilai maksimum T;
         Min berisi nilai minimum T */
@@ -141,10 +141,10 @@ void CopyTab(TabInt Tin, TabInt *Tout);
 /* I.S. Tin terdefinisi tidak kosong, Tout sembarang */
 /* F.S. Tout berisi salinan dari Tin (identik, Neff dan MaxEl sama) */
 /* Proses : Menyalin isi Tin ke Tout */
-ElType SumTab(TabInt T);
+ElTypeA SumTab(TabInt T);
 /* Menghasilkan hasil penjumlahan semua elemen T */
 /* Jika T kosong menghasilkan 0 */
-int CountX(TabInt T, ElType X);
+int CountX(TabInt T, ElTypeA X);
 /* Menghasilkan berapa banyak kemunculan X di T */
 /* Jika T kosong menghasilkan 0 */
 boolean IsAllGenap(TabInt T);
@@ -160,12 +160,12 @@ void Sort(TabInt *T, boolean asc);
 
 /* ********** MENAMBAH DAN MENGHAPUS ELEMEN DI AKHIR ********** */
 /* *** Menambahkan elemen terakhir *** */
-void AddAsLastEl(TabInt *T, ElType X);
+void AddAsLastEl(TabInt *T, ElTypeA X);
 /* Proses: Menambahkan X sebagai elemen terakhir tabel */
 /* I.S. Tabel T boleh kosong, tetapi tidak penuh */
 /* F.S. X adalah elemen terakhir T yang baru */
 /* ********** MENGHAPUS ELEMEN ********** */
-void DelLastEl(TabInt *T, ElType *X);
+void DelLastEl(TabInt *T, ElTypeA *X);
 /* Proses : Menghapus elemen terakhir tabel */
 /* I.S. Tabel tidak kosong */
 /* F.S. X adalah nilai elemen terakhir T sebelum penghapusan, */

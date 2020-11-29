@@ -15,6 +15,23 @@ typedef struct {
     int Length;
 } Kata;
 
+typedef struct {
+   Kata aksi[5];
+   int durasi[5];
+} Action;
+
+typedef struct {
+   Kata material[5];
+   int harga[5];
+} Materials;
+
+
+#define Aksi(A,i) (A).aksi[(i)]
+#define DurasiAksi(A,i) (A).durasi[(i)]
+
+#define Material(B,i) (B).material[(i)]
+#define HargaMaterial(B,i) (B).harga[(i)]
+
 /* State Mesin Kata */
 extern boolean EndKata;
 extern Kata CKata;
@@ -60,6 +77,12 @@ void InputUser (Kata *K);
 void PrintKata (Kata K);
 /* Menampilkan Kata K ke layar */
 
+Kata KonkatKata (Kata K1, Kata K2);
+
+void ListAction (Action *A, char *File);
+
+void ListMaterial (Materials *B, char *File);
+
 void ParsePilihBahan (Kata Perintah, Kata *jumlah, Kata *bahan);
 
 void MakeListHargaBahan (TabInt *T, char*File);
@@ -69,6 +92,8 @@ int HargaBahan(Kata bahan, char *File);
 void PrintListBahan (char *File);
 
 boolean IsBahanAda (Kata K, char *File);
+
+int HargaWahana(Kata wahana, char *File1);
 
 void PrintListWahana (char *File);
 
