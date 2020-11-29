@@ -7,9 +7,9 @@
 #include "../mesin/mesinkata.h"
 #include "../matriks/matriks.h"
 
+
 typedef struct
 {
-    MATRIKS mapPlayer;
     Kata name;
     int money; //PREP/MAIN
     int currentTime; //PREP/MAIN
@@ -25,7 +25,6 @@ typedef struct
 
 } State;
 
-#define MPlayer(PS) (PS).mapPlayer
 #define Name(PS) (PS).name
 #define Money(PS) (PS).money
 #define CurrTime(PS) (PS).currentTime
@@ -39,7 +38,7 @@ typedef struct
 #define Lok(PS) (PS).lokasi
 //#define Antrian(PS) (PS).antrian
 
-void NewPrepState(State *PS, Kata Nama, MATRIKS *M);
+void NewPrepState(State *PS, Kata Nama);
 
 void NewMainState(State *PS);
 

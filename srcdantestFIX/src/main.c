@@ -1,15 +1,69 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "movement.h"
 #include "mesin/mesinkata.h"
 #include "state/state.h"
 #include "stackP/stackP.h"
-#include "movement.h"
-
 
 int main(){
-
-    Kata InputPertama, game;
+	MATRIKS M1;
+	MATRIKS M2;
+	MATRIKS M3;
+	MATRIKS M4;
+	MakeMATRIKS(&M1,"../test/map1.txt");
+	MakeMATRIKS(&M2,"../test/map2.txt");
+	MakeMATRIKS(&M3,"../test/map3.txt");
+	MakeMATRIKS(&M4,"../test/map4.txt");
+	int i,j;
+	for (i=0;i<NBrs(M1);i++){
+		for (j=0;j<NKol(M1);j++){
+			Lokasi(M1,i,j)=MakePoint(j+NKol(M2),i);
+		}
+	}
+	
+	for (i=0;i<NBrs(M2);i++){
+		for (j=0;j<NKol(M2);j++){
+			Lokasi(M2,i,j)=MakePoint(j,i);
+		}
+	}
+	
+	for (i=0;i<NBrs(M3);i++){
+		for (j=0;j<NKol(M3);j++){
+			Lokasi(M3,i,j)=MakePoint(j,i+NBrs(M2));
+		}
+	}
+	
+	for (i=0;i<NBrs(M1);i++){
+		for (j=0;j<NKol(M1);j++){
+			Lokasi(M4,i,j)=MakePoint(j+NKol(M2),i+NBrs(M2));
+		}
+	}
+	/*
+	for (i=0;i<NBrs(M1);i++){
+		for (j=0;j<NKol(M1);j++){
+			TulisPOINT(Lokasi(M1,i,j));
+		}
+		if (i!=NBrs(M1)) {
+			printf("\n");
+		}
+	}*/
+	List L ;
+	Nomor(L) = 2 ;
+	TulisMATRIKS(M2);
+	for (i=0;i<NBrs(M2);i++){
+		for (j=0;j<NKol(M2);j++){
+			if (Info(M2,i,j)=='P'){
+				Ordinat(Kordinat(L)) = i ;
+				Absis(Kordinat(L)) = j ;
+			}
+		}
+	}
+	Current(L)=NilL;
+	InsVLast(&L,M2);
+	InsVLast(&L,M1);
+	InsVLast(&L,M4);
+	InsVLast(&L,M3);
+	Kata InputPertama, game;
     game.TabKata[0]='.';
     game.TabKata[1]='/';
     game.TabKata[2]='w';
@@ -24,12 +78,12 @@ int main(){
     game.Length=11;
     printf("Silahkan mengetik './willygame' untuk memulai permainan.\n");
     boolean gamemulai = false;
-    while (!gamemulai)
-    { 
-        InputUser(&InputPertama);
-        if(IsKataSama(InputPertama,game))
-        {
-            gamemulai = true;
+	while (!gamemulai)
+	{
+		InputUser(&InputPertama);
+		if(IsKataSama(InputPertama,game))
+		{
+			gamemulai = true;
             printf("// Welcome to Willy wangky's fum factory!!//\n// New game / load game / exit? // \n");
             StackP Perintah;
             CreateEmpty(&Perintah);
@@ -50,9 +104,9 @@ int main(){
             exit.Length = 4;
 
             InputUser(&InputKedua);
-            if (IsKataSama(InputKedua,newk))
-            {
-                boolean bermain = true;
+			if (IsKataSama(InputKedua,newk))
+			{
+				boolean bermain = true;
                 boolean main = false;
 
                 Kata WMove;
@@ -189,72 +243,19 @@ int main(){
                 EXIT.TabKata[2]='i';
                 EXIT.TabKata[3]='t';
                 EXIT.Length = 4;
-                
+            
                 State Player;
                 Kata nama;
 
-                //MATRIKS M1;
-                MATRIKS M2;
-                //MATRIKS M3;
-                //MATRIKS M4;
-                //MakeMATRIKS(&M1,"../test/map1.txt");
-                MakeMATRIKS(&M2,"../test/map2.txt");
-                //MakeMATRIKS(&M3,"../test/map3.txt");
-                //MakeMATRIKS(&M4,"../test/map4.txt");
-                int i,j;
-                
-                /*
-                int i,j;
-                for (i=0;i<NBrs(M1);i++){
-                    for (j=0;j<NKol(M1);j++){
-                        Lokasi(M1,i,j)=MakePoint(j+NKol(M2),i);
-                    }
-                }*/
-                
-                for (i=0;i<NBrs(M2);i++){
-                    for (j=0;j<NKol(M2);j++){
-                        Lokasi(M2,i,j)=MakePoint(j,i);
-                    }
-                }
-                
-                /*
-                for (i=0;i<NBrs(M3);i++){
-                    for (j=0;j<NKol(M3);j++){
-                        Lokasi(M3,i,j)=MakePoint(j,i+NBrs(M2));
-                    }
-                }
-                
-                for (i=0;i<NBrs(M1);i++){
-                    for (j=0;j<NKol(M1);j++){
-                        Lokasi(M4,i,j)=MakePoint(j+NKol(M2),i+NBrs(M2));
-                    }
-                }*/
-                List L ;
-                Nomor(L) = 2 ;
-                TulisMATRIKS(M2);
-                for (i=0;i<NBrs(M2);i++){
-                    for (j=0;j<NKol(M2);j++){
-                        if (Info(M2,i,j)=='P'){
-                            Ordinat(Kordinat(L)) = i ;
-                            Absis(Kordinat(L)) = j ;
-                        }
-                    }
-                }
-                Current(L)=NilL;
-                InsVLast(&L,M2);
-                //InsVLast(&L,M1);
-                /*InsVLast(&L,M4);
-                InsVLast(&L,M3);*/
-               
-                
-                printf("Memulai permainan baru...\n");
+				printf("Memulai permainan baru...\n");
                 printf("Masukkan nama: ");
                 InputUser(&nama);
                 printf("\n\n");
-                NewPrepState(&Player,nama,&M2);
+				TulisMATRIKS(M2);
+                NewPrepState(&Player,nama);
                 PrintPrepState(Player);
-    
-                while(bermain)
+
+				while(bermain)
                 {
                     Kata perintah;
                     printf("Masukkan perintah: \n");
@@ -265,25 +266,25 @@ int main(){
                         if (IsKataSama(perintah,WMove))
                         {
                             W(&L);
-                            MPlayer(Player) = matriks(Current(L));
+                            TulisMATRIKS(matriks(Current(L)));
                             PrintPrepState(Player);
                         }
                         else if (IsKataSama(perintah,AMove))
                         {
                             A(&L);
-                            MPlayer(Player) = matriks(Current(L));
+                            TulisMATRIKS(matriks(Current(L)));
                             PrintPrepState(Player);
                         }
                         else if (IsKataSama(perintah,SMove))
                         {
                             S(&L);
-                            MPlayer(Player) = matriks(Current(L));
+                            TulisMATRIKS(matriks(Current(L)));
                             PrintPrepState(Player);
                         }
                         else if (IsKataSama(perintah,DMove))
                         {
                             D(&L);
-                            MPlayer(Player) = matriks(Current(L));
+                            TulisMATRIKS(matriks(Current(L)));
                             PrintPrepState(Player);
                         }
                         else if (IsKataSama(perintah,BUILD))
@@ -487,7 +488,5 @@ int main(){
         }
         
     }
-    int h;
-    scanf("%d",&h);
-    return 0;
+	return 0;
 }

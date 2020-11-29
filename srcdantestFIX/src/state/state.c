@@ -1,11 +1,9 @@
 
-#include "../readWahana.h"
 #include "state.h"
 #include <stdio.h>
 
-void NewPrepState(State *PS, Kata Nama, MATRIKS *M)
+void NewPrepState(State *PS, Kata Nama)
 {
-    MPlayer(*PS) = *M;
     Name(*PS) = Nama;
     Money(*PS) = 1000;
     CurrTime(*PS) = 75600;
@@ -35,7 +33,7 @@ void PrintPrepState(State PS)
 {
     printf("Preparation phase day 1\n");
     printf("----------MAP----------\n");
-    TulisMATRIKS(MPlayer(PS));
+    //TulisMATRIKS(MPlayer(PS));
     printf("\n");
     Jam JCurr,JOpen, JRemaining, JTWaktu;
     JCurr = DetikToJam(CurrTime(PS));
