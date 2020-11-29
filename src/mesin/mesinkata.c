@@ -118,19 +118,42 @@ int KataToInt (Kata K)
 	}
 	return val;	
 }
-void InputUser (Kata *K)
+void InputUser (Kata *K,boolean *serve)
 /* Memasukkan inputan user ke dalam Kata K*/
 {
 	char c;
 	int i = 0;
 	scanf("%c",&c);
-	while (c != '\n')
-	{
+	while ((c != NEWLINE) && (c !=BLANK))
+	{	
+		
 		(*K).TabKata[i] = c;
 		++i;
 		scanf("%c",&c);
 	}
 	(*K).Length = i;
+	if (c==BLANK){
+		Kata SERVE;
+		SERVE.TabKata[0]='s';
+		SERVE.TabKata[1]='e';
+		SERVE.TabKata[2]='r';
+		SERVE.TabKata[3]='v';
+		SERVE.TabKata[4]='e';
+		SERVE.Length = 5;
+		if (IsKataSama(*K,SERVE)){
+			*serve = true;
+			int i=0;
+			scanf("%c",&c);
+			while ((c != NEWLINE) && (c !=BLANK)){	
+				(*K).TabKata[i] = c;
+				++i;
+				scanf("%c",&c);
+			}
+			(*K).Length = i;	
+		} else
+			*serve=false;
+	}
+	
 }
 
 void PrintKata (Kata K)

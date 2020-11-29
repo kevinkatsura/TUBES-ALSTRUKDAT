@@ -5,8 +5,8 @@
 #define __MESINKATA_H__
 
 
-#include "mesinkar.h"
-#include "../arraydin/arraydin.h"
+#include "mesinkar.c"
+#include "../arraydin/arraydin.c"
 
 #define NMax 1000
 
@@ -54,7 +54,7 @@ char KataToChar (Kata K);
 int KataToInt (Kata K);
 /* Mengonversi Kata K menjadi integer */
 
-void InputUser (Kata *K);
+void InputUser (Kata *K, boolean *serve);
 /* Memasukkan inputan user ke dalam Kata K*/
 
 void PrintKata (Kata K);
