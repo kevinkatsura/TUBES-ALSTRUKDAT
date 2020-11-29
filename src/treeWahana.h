@@ -3,6 +3,6 @@
 
 #include "mesin/mesinkata.c"
 
-extern BinTree uWu;
+void MakeWahana(BinTree *uWu);
 
-void MakeWahana;
+#endif

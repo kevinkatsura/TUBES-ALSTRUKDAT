@@ -2,8 +2,7 @@
 #include "bintree/bintree.c"
 #include "readWahana.c"
 
-BinTree uWu;
-void MakeWahana(){
+void MakeWahana(BinTree *uWu){
 	int nData;
 	ekstrakWahana(&nData);
 	infotypeW wahana[nData];
@@ -26,10 +25,14 @@ void MakeWahana(){
 	BinTree JBless = Tree(wahana[5],L,R);
 	BinTree Wangky = Tree(wahana[3],EngiD,JBless);
 	BinTree Halo = Tree(wahana[2],EngiD,R);
-	BinTree uWu = Tree(wahana[1],Wangky,Halo);
-	/*Contoh penggunaan*/
-	PrintTree(uWu,2);
-
+	*uWu = Tree(wahana[1],Wangky,Halo);
+	
+	/*Contoh penggunaan
+	int main(){
+		BinTree uWu;
+		MakeWahana(&uWu);
+		PrintTree(Right(uWu),2);
+	}*/	
 }
 
 	
