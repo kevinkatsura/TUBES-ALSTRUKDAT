@@ -1,0 +1,6 @@
+Bahan;Harga
+Kayu;100
+Batu;150
+Pasir;100
+Besi;200
+Semen;200.

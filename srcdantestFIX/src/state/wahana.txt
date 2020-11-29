@@ -1,0 +1,6 @@
+namaW;hargaW;kapasitasW;durasiW;deskripsiW;kayu;batu;pasir;besi;semen
+uWuCoaster;200;20;20;Deskripsi uWuCoaster;6;2;1;0;9
+HALOlintar;150;20;15;Deskripsi Halolintar;4;5;2;8;0
+Wangky Universe;175;15;20;Deskripsi Wangky Universe;0;4;2;1;3
+Engi's Decent;200;25;15;Deskripsi Engi's Decent;5;3;1;2;2
+Jan's Blessing;280;20;20;Deskripsi Jan's Blessing;3;4;2;6;5.
