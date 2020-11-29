@@ -144,15 +144,26 @@ void InputUser (Kata *K,boolean *serve)
 			*serve = true;
 			int i=0;
 			scanf("%c",&c);
-			while ((c != NEWLINE) && (c !=BLANK)){	
+			while (c != NEWLINE){	
 				(*K).TabKata[i] = c;
 				++i;
 				scanf("%c",&c);
 			}
 			(*K).Length = i;	
-		} else
+		} else {
 			*serve=false;
+			int j = (*K).Length+1;
+			scanf("%c",&c);
+			while (c != NEWLINE) 
+			{	
+			(*K).TabKata[j] = c;
+			++j;
+			scanf("%c",&c);
+			}
+			(*K).Length=j;
+		}
 	}
+	
 	
 }
 
